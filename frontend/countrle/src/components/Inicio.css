@@ -1,0 +1,75 @@
+body {
+  padding-top: 20px;
+  padding-bottom: 40px;
+}
+
+/* Custom container */
+.container-narrow {
+  margin: 0 auto;
+  max-width: 700px;
+}
+.container-narrow > hr {
+  margin: 30px 0;
+}
+
+/* Main marketing message and sign up button */
+.jumbotron {
+  margin: 60px 0;
+  text-align: center;
+}
+.jumbotron h1 {
+  font-size: 72px;
+  line-height: 1;
+}
+.jumbotron .btn {
+  font-size: 21px;
+  padding: 14px 24px;
+}
+
+/* Supporting marketing content */
+.marketing {
+  margin: 60px 0;
+}
+.marketing p + h4 {
+  margin-top: 28px;
+}
+
+/* Define la animación */
+@keyframes slideDown {
+  0% {
+    transform: translateY(-20%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Aplica la animación al contenido */
+.animacion-carga {
+  animation: slideDown 0.8s ease-in-out;
+}
+
+#mundo {
+  background:url(https://www.decowallpaper.com.au/wp-content/uploads/2022/04/blue_green_map_detail.jpg);
+  background-size:cover;
+  border:unset;
+  border-radius:50%;
+  width:200px;
+  height:200px;
+  animation: movimiento 5s linear 0s infinite;
+
+  margin:2em auto;
+  transform:rotateX(6deg) rotateY(6deg) rotateZ(6deg);
+}
+
+@keyframes movimiento {
+  0% { background-position:0 0 }
+  100% { background-position:355px 0 }
+}
+
+@keyframes stars {
+  0% { background-position:0 0 }
+  100% { background-position:0 100% }
+}
