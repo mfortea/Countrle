@@ -3,4 +3,12 @@
     padding: 20px;
     text-align: center;
   }
+
+  @media (prefers-color-scheme: dark) {
+    .footer {
+      color: white;
+      background-color: rgb(31, 31, 31)!important;
+    }
+
+  }
   

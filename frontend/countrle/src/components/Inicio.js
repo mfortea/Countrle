@@ -1,10 +1,22 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './Inicio.css'; // Importa el archivo de estilos CSS para el Footer
+import Login from './Login';
 import mundoImage from '../assets/mapa.jpg';
 
 const Inicio = () => {
+  const [componenteActivo, setComponenteActivo] = useState('inicio');
+
+  const renderComponenteActivo = () => {
+    switch (componenteActivo) {
+      case 'login':
+        return <Login />;
+      default:
+        return null;
+    }
+  };
   return (
-    <body>
+    <div>
+      <br></br>
       <div class="container animacion-carga">
         <div class="jumbotron">
         <div id="mundo"></div>
@@ -18,12 +30,12 @@ const Inicio = () => {
             ¡Diviértete mientras aprendes y desafías a tus amigos! ¿Serás capaz de adivinar todas las palabras relacionadas con los países correctamente?
 
             ¡Que comience la aventura en Countrle!.</p>
-          <a class="btn btn-large btn-primary" href="#">Iniciar Sesión</a>
+          <a class="btn btn-large btn-primary" onClick={() => setComponenteActivo('login')}>Iniciar Sesión</a>
         </div>
 
       </div>
-    </body>
-
+      
+    </div>
   );
 };
 

@@ -8,21 +8,29 @@ body {
   margin: 0 auto;
   max-width: 700px;
 }
-.container-narrow > hr {
+
+.container-narrow>hr {
   margin: 30px 0;
 }
 
 /* Main marketing message and sign up button */
 .jumbotron {
+  z-index: 10 !important;
   margin: 60px 0;
   text-align: center;
+  -webkit-box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.75);
 }
+
 .jumbotron h1 {
-  font-size: 72px;
+  font-size: 65px;
   line-height: 1;
 }
+
 .jumbotron .btn {
   font-size: 21px;
+  margin-top: 2em;
   padding: 14px 24px;
 }
 
@@ -30,7 +38,8 @@ body {
 .marketing {
   margin: 60px 0;
 }
-.marketing p + h4 {
+
+.marketing p+h4 {
   margin-top: 28px;
 }
 
@@ -40,6 +49,7 @@ body {
     transform: translateY(-20%);
     opacity: 0;
   }
+
   100% {
     transform: translateY(0);
     opacity: 1;
@@ -52,24 +62,51 @@ body {
 }
 
 #mundo {
-  background:url(https://www.decowallpaper.com.au/wp-content/uploads/2022/04/blue_green_map_detail.jpg);
-  background-size:cover;
-  border:unset;
-  border-radius:50%;
-  width:200px;
-  height:200px;
-  animation: movimiento 5s linear 0s infinite;
+  background: url(https://www.decowallpaper.com.au/wp-content/uploads/2022/04/blue_green_map_detail.jpg);
+  background-size: cover;
+  border: unset;
+  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+  animation: movimiento 8s linear 0s infinite;
+  z-index: 10 !important;
 
-  margin:2em auto;
-  transform:rotateX(6deg) rotateY(6deg) rotateZ(6deg);
+  margin: 2em auto;
+  transform: rotateX(6deg) rotateY(6deg) rotateZ(6deg);
 }
 
 @keyframes movimiento {
-  0% { background-position:0 0 }
-  100% { background-position:355px 0 }
+  0% {
+    background-position: 0 0
+  }
+
+  100% {
+    background-position: 355px 0
+  }
 }
 
 @keyframes stars {
-  0% { background-position:0 0 }
-  100% { background-position:0 100% }
+  0% {
+    background-position: 0 0
+  }
+
+  100% {
+    background-position: 0 100%
+  }
+}
+
+
+/*ESTILOS DEL MODO OSCURO*/
+@media (prefers-color-scheme: dark) {
+
+  .jumbotron {
+    margin: 60px 0;
+    text-align: center;
+    color: white;
+    background-color: rgb(31, 31, 31)!important;
+    -webkit-box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.75);
+  }
+  
 }
