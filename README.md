@@ -18,7 +18,23 @@ Countrle es una aplicación web que ofrece un divertido giro al popular juego Wo
 - MondoDB: Sistema de gestión de bases de datos utilizado por Django.
 - npm: Gestor de paquetes para la instalación de dependencias de JavaScript.
 
-## 🚀 Cómo comenzar 
+## 🚀 Despliegue
+
+### DESPLIEGUE FRONTEND
+Nuestrro frontend con React está desplegado en la plataforma gratuita Netlify, donde se sincroniza automáticamente con este respositorio. El estado actual del despliegue es el siguiente:
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/72abcae7-7cdf-4332-b314-048ef2b247ec/deploy-status)](https://app.netlify.com/sites/countrle/deploys)
+
+Puedes acceder desde este enlace: [https://countrle.netlify.app](https://countrle.netlify.app) O bien usando el código QR siguiente:
+
+<img src="./frontend/countrle/src/assets/QR_front.png" alt="QR Frontend" width="200px">
+
+
+### DESPLIEGUE BACKEND
+
+
+
+### DESPLIEGUE LOCAL
 
 Para ejecutar Countrle en tu equipo local, sigue estos pasos:
 
