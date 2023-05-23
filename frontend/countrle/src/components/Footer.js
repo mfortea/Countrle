@@ -1,9 +1,9 @@
 import React from 'react';
-import './Footer.css'; // Importa el archivo de estilos CSS para el Footer
+import './Footer.css';
 
 const Footer = () => {
-  const anoActual = new Date().getFullYear();
-  const copyrightText = 'Countrle © 2023 Todos los derechos reservados';
+  const anoActual = new Date().getFullYear(); // obtiene el año actual
+  const copyrightText = `Countrle © ${anoActual} Todos los derechos reservados`; // usa una template string para insertar el año
 
   return (
     <footer className="footer">

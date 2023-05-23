@@ -1,34 +1,54 @@
 /*ESTILOS GENERALES/*/
 
-.show .navbar-nav {
+.navbar-nav {
     align-items: center;
-    margin-bottom: 1em;
-  
+    justify-content: center;
 }
-.show .navbar-nav .nav-item {
+
+.navbar-nav .nav-item {
     margin-bottom: 5px;
     width: 250px;
 }
 
+.navbar-collapse.show .navbar-nav {
+    margin-bottom: 1em;
+}
 
+body, html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  
+  #contenedor {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Cambia a 100vh para que ocupe la totalidad de la vista del viewport */
+  }
+
+  .nav-link {
+    cursor: pointer;
+  }
+
+  @media (min-width: 992px) {
+    .navbar-nav .nav-item {
+      width: 100px;
+      flex-grow: 0;
+    }
+  }
+
+
+  
 /*ESTILOS DEL MODO CLARO*/
 
 body {
-    background-image: url(assets/banderas-claro.png);
+    background-image: url(assets/banderas-claro.webp);
     background-repeat: repeat;
     background-attachment: fixed;
     animation: scrollBackground 40s infinite;
 }
 
-@keyframes scrollBackground {
-    0% {
-        background-position: 0 0;
-    }
 
-    100% {
-        background-position: 100% 100%;
-    }
-}
 
 #logo {
     width: 55px;
@@ -90,10 +110,10 @@ body {
 @media (prefers-color-scheme: dark) {
 
     body {
-        background-image: url(assets/banderas-oscuro.png);
+        background-image: url(assets/banderas-oscuro.webp);
         background-repeat: repeat;
         background-attachment: fixed;
-        animation: scrollBackground 40s infinite;
+        animation: scrollBackground 50s infinite;
     }
 
     @keyframes scrollBackground {
@@ -137,19 +157,19 @@ body {
     }
 
     .navbar-toggler-icon:hover {
-        background-image: url(assets/menu-oscuro-hover.png) !important;
+        background-image: url(assets/menu-oscuro-hover.webp) !important;
         transition: 0.2s;
         filter: brightness(0.5);
     }
 
     .navbar-toggler-icon:active {
-        background-image: url(assets/menu-oscuro.png) !important;
+        background-image: url(assets/menu-oscuro.webp) !important;
         transition: 0.2s;
         filter: brightness(0.4);
     }
 
     .navbar-toggler-icon {
-        background-image: url(assets/menu-oscuro-hover.png) !important;
+        background-image: url(assets/menu-oscuro-hover.webp) !important;
         transition: 0.2s;
     }
 

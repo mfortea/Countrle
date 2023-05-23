@@ -1,108 +1,66 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import './App.css';
 import Footer from './components/Footer';
 import Inicio from './components/Inicio';
 import AcercaDe from './components/AcercaDe';
 import Juego from './components/Juego';
 import Reglas from './components/Reglas';
-import logo from './logo.png';
+import logo from './logo.webp';
+import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom';
+import Login from './components/Login';
 
 function App() {
-  const [componenteActivo, setComponenteActivo] = useState('inicio');
-
-  const renderComponenteActivo = () => {
-    switch (componenteActivo) {
-      case 'inicio':
-        return <Inicio setComponenteActivo={setComponenteActivo} />;
-      case 'acercaDe':
-        return <AcercaDe />;
-      case 'juego':
-        return <Juego />;
-      case 'reglas':
-          return <Reglas />;
-      default:
-        return null;
-    }
-  };
-  const handleClick = (component) => {
-    setComponenteActivo(component);
-
-    // Cerramos el menú al hacer clic en una opción
-    const navbarToggler = document.querySelector('.navbar-toggler');
-    if (!navbarToggler.classList.contains('collapsed')) {
-      navbarToggler.click();
-    }
-};
-
-  useEffect(() => {
-    document.title = `Countrle - ${componenteActivo.charAt(0).toUpperCase() + componenteActivo.slice(1)}`;
-  }, [componenteActivo]);
+  const navbarCollapse = useRef();
 
   return (
-    <div id='contenedor'>
-      <div id='menu'>
-        <nav id="barra-menu" className="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-          <div className="container">
-            <a className="navbar-brand" onClick={() => handleClick('inicio')} href="#">
-              <img id="logo" src={logo} alt="Logo" />
-            </a>
-            <button
-              className="navbar-toggler"
-              type="button"
-              data-toggle="collapse"
-              data-target="#navbarNav"
-              aria-controls="navbarNav"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-            >
-              <span className="navbar-toggler-icon"></span>
-            </button>
-            <div className="collapse navbar-collapse" id="navbarNav">
-              <ul className="navbar-nav">
-                <li className="nav-item">
-                  <a
-                    className={`nav-link ${componenteActivo === 'inicio' ? 'active' : ''}`}
-                    href="#"
-                    onClick={() => handleClick('inicio')}
-                  >
-                    Inicio
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a
-                    className={`nav-link ${componenteActivo === 'reglas' ? 'active' : ''}`}
-                    href="#"
-                    onClick={() => handleClick('reglas')}
-                  >
-                    Reglas
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a
-                    className={`nav-link ${componenteActivo === 'acercaDe' ? 'active' : ''}`}
-                    href="#"
-                    onClick={() => handleClick('acercaDe')}
-                  >
-                    Acerca de
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a
-                    className={`nav-link ${componenteActivo === 'juego' ? 'active' : ''}`}
-                    href="#"
-                    onClick={() => handleClick('juego')}
-                  >
-                    Juego
-                  </a>
-                </li>
-              </ul>
+    <Router>
+      <div id='contenedor'>
+        <div id='menu'>
+          <nav id="barra-menu" className="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+            <div className="container">
+              <Link className="navbar-brand" to="/">
+                <img id="logo" src={logo} alt="Logo" />
+              </Link>
+              <button
+                className="navbar-toggler"
+                type="button"
+                data-toggle="collapse"
+                data-target="#navbarNav"
+                aria-controls="navbarNav"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+              >
+                <span className="navbar-toggler-icon"></span>
+              </button>
+              <div className="collapse navbar-collapse" id="navbarNav" ref={navbarCollapse}>
+                <ul className="navbar-nav">
+                  <li className="nav-item">
+                    <Link onClick={() => { if (navbarCollapse.current.classList.contains('show')) navbarCollapse.current.classList.remove('show'); }} className="nav-link" to="/">Inicio</Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link onClick={() => { if (navbarCollapse.current.classList.contains('show')) navbarCollapse.current.classList.remove('show'); }} className="nav-link" to="/reglas">Reglas</Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link onClick={() => { if (navbarCollapse.current.classList.contains('show')) navbarCollapse.current.classList.remove('show'); }} className="nav-link" to="/acercaDe">Acerca de</Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link onClick={() => { if (navbarCollapse.current.classList.contains('show')) navbarCollapse.current.classList.remove('show'); }} className="nav-link" to="/juego">Test juego</Link>
+                  </li>
+                </ul>
+              </div>
             </div>
-          </div>
-        </nav>
-        {renderComponenteActivo()}
+          </nav>
+          <Routes>
+            <Route path="/" element={<Inicio />} />
+            <Route path="/acercaDe" element={<AcercaDe />} />
+            <Route path="/juego" element={<Juego />} />
+            <Route path="/reglas" element={<Reglas />} />
+            <Route path="/login" element={<Login />} />
+          </Routes>
+        </div>
+        <Footer></Footer>
       </div>
-      <Footer></Footer>
-    </div>
+    </Router>
   );
 }
 

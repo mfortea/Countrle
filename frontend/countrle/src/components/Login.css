@@ -1,4 +1,13 @@
-#logo-acercade {
+.formulario {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+#logo_login {
   width: 100px;
-  margin-bottom: 1em;
+}
+
+input {
+  max-width:350px;
+  margin: 0 auto;
 }

@@ -1,19 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import './Inicio.css'; // Importa el archivo de estilos CSS para el Footer
-import Login from './Login';
-import mundoImage from '../assets/mapa.jpg';
+import { Link } from "react-router-dom";
+import './Inicio.css'; 
+
 
 const Inicio = () => {
-  const [componenteActivo, setComponenteActivo] = useState('inicio');
 
-  const renderComponenteActivo = () => {
-    switch (componenteActivo) {
-      case 'login':
-        return <Login />;
-      default:
-        return null;
-    }
-  };
   return (
     <div>
       <br></br>
@@ -30,7 +21,8 @@ const Inicio = () => {
             ¡Diviértete mientras aprendes y desafías a tus amigos! ¿Serás capaz de adivinar todas las palabras relacionadas con los países correctamente?
 
             ¡Que comience la aventura en Countrle!.</p>
-            <a class="btn btn-large btn-primary" onClick={() => setComponenteActivo('juego')}>Iniciar Sesión</a>
+            <a className="btn btn-large btn-primary" href="/login">Iniciar Sesión</a>
+
         </div>
 
       </div>

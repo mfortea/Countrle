@@ -15,3 +15,9 @@ code {
 .centrar {
   text-align: center;
 }
+
+.nombres {
+  font-weight: bold;
+  font-style: italic;
+  font-size: 16px;
+}
