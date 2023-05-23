@@ -1,5 +1,5 @@
 # Countrle
-<img src="./frontend/countrle/public/logo192.png" alt="Logo de Countrle" width="100px">
+<img src="./frontend/countrle/src/logo.png" alt="Logo de Countrle" width="100px">
 
 
 Countrle es una aplicación web que ofrece un divertido giro al popular juego Wordle. En este juego, los jugadores se desafían a adivinar conceptos relacionados con países. Desarrollada utilizando Django y React, Countrle ofrece una experiencia de juego entretenida y educativa.
@@ -9,14 +9,13 @@ Countrle es una aplicación web que ofrece un divertido giro al popular juego Wo
 - Adivina conceptos relacionados con países en un formato similar a Wordle.
 - Pon a prueba tus conocimientos sobre países, geografía y curiosidades culturales.
 - Disfruta de una interfaz elegante y fácil de usar construida con React y Django.
-- Mantente comprometido con un juego desafiante y niveles de dificultad variables.
 
 ## ⚙️ Tecnologías Utilizadas 
 
 - Django: Framework de desarrollo web en Python.
 - React: Biblioteca de JavaScript para construir interfaces de usuario.
 - HTML/CSS: Lenguajes fundamentales para el desarrollo web.
-- PostgreSQL: Sistema de gestión de bases de datos utilizado por Django.
+- MondoDB: Sistema de gestión de bases de datos utilizado por Django.
 - npm: Gestor de paquetes para la instalación de dependencias de JavaScript.
 
 ## 🚀 Cómo comenzar 
