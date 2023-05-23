@@ -1,0 +1,42 @@
+.reglas {
+    text-align: justify;
+    }
+    .reglas p {
+        font-size: 18px;
+    }
+    
+    .verde-r {
+        background-color: #6ca965;
+        width: 50px;
+        height: 50px;
+        border-radius: 10px;
+    }
+    
+    .amarillo-r {
+        background-color: #c8b653;
+        width: 50px;
+        height: 50px;
+        border-radius: 10px;
+    }
+    
+    .gris-r {
+        background-color: #787c7f;
+        width: 50px;
+        height: 50px;
+        border-radius: 10px;
+    }
+    
+    .color-descripcion {
+        display: flex;
+        align-items: center;
+        margin-top: 15px;
+    }
+    
+    .color-descripcion span {
+        display: inline-block;
+        margin-bottom: 15px;
+        margin-right: 15px;
+        text-align: center;
+        font-size: 30px;
+        font-weight: bold;
+    }

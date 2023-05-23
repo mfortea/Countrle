@@ -1,0 +1,134 @@
+.juego {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    color: #000000;
+}
+
+.tablero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    transition: background-color 0.3s;
+}
+
+.fila {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+}
+
+.casilla {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    font-size: 25px;
+    font-weight: bold;
+    background-color: white;
+    transition: background-color 1s;
+}
+
+.casilla.verde {
+    background-color: #6ca965;
+    color: #000000;
+}
+
+.casilla.amarillo {
+    background-color: #c8b653;
+    color: #000000;
+}
+
+.casilla.gris {
+    background-color: #787c7f;
+    color: #000000;
+}
+
+.casilla.activo {
+    border: solid;
+    border-color: rgb(0, 148, 246);
+    border-width: 5px;
+}
+
+
+.teclado {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-gap: 5px;
+    margin-top: 20px;
+}
+
+.botones {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+button {
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+    background-color: #ffffff;
+    color: #000000;
+    font-size: 25px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #787c7f;
+}
+
+button:active {
+    background-color: #363636;
+    transition: none;
+}
+
+.ganador {
+    margin-top: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #008d0e;
+}
+button.verde {
+    background-color: #6ca965;
+}
+
+button.amarillo {
+    background-color: #c8b653;
+}
+
+button.gris {
+    background-color: #787c7f;
+}
+
+#bComprobar{
+    width: 150px;
+    margin-right: 5px;
+    font-size: 20px;
+    font-weight: normal;
+    color: white;
+    background-color: rgb(0, 159, 29);
+}
+
+#bComprobar:hover{
+    background-color: rgb(0, 87, 16);
+}
+
+#bBorrar{
+    width: 150px;
+    font-size: 20px;
+    font-weight: normal;
+    color: white;
+    background-color: rgb(159, 0, 0);
+}
+
+#bBorrar:hover{
+    background-color: rgb(87, 0, 0);
+}

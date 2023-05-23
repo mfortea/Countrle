@@ -30,7 +30,7 @@ const Inicio = () => {
             ¡Diviértete mientras aprendes y desafías a tus amigos! ¿Serás capaz de adivinar todas las palabras relacionadas con los países correctamente?
 
             ¡Que comience la aventura en Countrle!.</p>
-          <a class="btn btn-large btn-primary" onClick={() => setComponenteActivo('login')}>Iniciar Sesión</a>
+            <a class="btn btn-large btn-primary" onClick={() => setComponenteActivo('juego')}>Iniciar Sesión</a>
         </div>
 
       </div>

@@ -59,7 +59,6 @@ body {
     left: 0;
     right: 0;
     z-index: 100 !important;
-    /* Asegura que el menú esté por encima de otros elementos */
 }
 
 .nav-link {

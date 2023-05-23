@@ -3,6 +3,8 @@ import './App.css';
 import Footer from './components/Footer';
 import Inicio from './components/Inicio';
 import AcercaDe from './components/AcercaDe';
+import Juego from './components/Juego';
+import Reglas from './components/Reglas';
 import logo from './logo.png';
 
 function App() {
@@ -11,16 +13,29 @@ function App() {
   const renderComponenteActivo = () => {
     switch (componenteActivo) {
       case 'inicio':
-        return <Inicio />;
+        return <Inicio setComponenteActivo={setComponenteActivo} />;
       case 'acercaDe':
         return <AcercaDe />;
+      case 'juego':
+        return <Juego />;
+      case 'reglas':
+          return <Reglas />;
       default:
         return null;
     }
   };
+  const handleClick = (component) => {
+    setComponenteActivo(component);
+
+    // Cerramos el menú al hacer clic en una opción
+    const navbarToggler = document.querySelector('.navbar-toggler');
+    if (!navbarToggler.classList.contains('collapsed')) {
+      navbarToggler.click();
+    }
+};
 
   useEffect(() => {
-    document.title = `Countrle - ${componenteActivo === 'inicio' ? 'Inicio' : 'Acerca de'}`;
+    document.title = `Countrle - ${componenteActivo.charAt(0).toUpperCase() + componenteActivo.slice(1)}`;
   }, [componenteActivo]);
 
   return (
@@ -28,7 +43,7 @@ function App() {
       <div id='menu'>
         <nav id="barra-menu" className="navbar navbar-expand-lg navbar-light bg-light fixed-top">
           <div className="container">
-            <a className="navbar-brand" onClick={() => setComponenteActivo('inicio')} href="#">
+            <a className="navbar-brand" onClick={() => handleClick('inicio')} href="#">
               <img id="logo" src={logo} alt="Logo" />
             </a>
             <button
@@ -48,16 +63,16 @@ function App() {
                   <a
                     className={`nav-link ${componenteActivo === 'inicio' ? 'active' : ''}`}
                     href="#"
-                    onClick={() => setComponenteActivo('inicio')}
+                    onClick={() => handleClick('inicio')}
                   >
                     Inicio
                   </a>
                 </li>
                 <li className="nav-item">
                   <a
-                    className={`nav-link ${componenteActivo === 'inicio' ? 'active' : ''}`}
+                    className={`nav-link ${componenteActivo === 'reglas' ? 'active' : ''}`}
                     href="#"
-                    onClick={() => setComponenteActivo('inicio')}
+                    onClick={() => handleClick('reglas')}
                   >
                     Reglas
                   </a>
@@ -66,9 +81,18 @@ function App() {
                   <a
                     className={`nav-link ${componenteActivo === 'acercaDe' ? 'active' : ''}`}
                     href="#"
-                    onClick={() => setComponenteActivo('acercaDe')}
+                    onClick={() => handleClick('acercaDe')}
                   >
                     Acerca de
+                  </a>
+                </li>
+                <li className="nav-item">
+                  <a
+                    className={`nav-link ${componenteActivo === 'juego' ? 'active' : ''}`}
+                    href="#"
+                    onClick={() => handleClick('juego')}
+                  >
+                    Juego
                   </a>
                 </li>
               </ul>
@@ -77,9 +101,8 @@ function App() {
         </nav>
         {renderComponenteActivo()}
       </div>
-    <Footer></Footer>
+      <Footer></Footer>
     </div>
-
   );
 }
 
