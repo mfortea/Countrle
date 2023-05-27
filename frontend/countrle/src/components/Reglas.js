@@ -1,5 +1,6 @@
 import React from 'react';
 import './Reglas.css';
+import metodos_entrada from '../assets/metodos_entrada.png';
 
 const Reglas = () => {
     return (
@@ -27,11 +28,16 @@ const Reglas = () => {
                     </div>
                     <br></br>
                     <h2>Tutorial</h2>
-                    <p>1. Escribe una palabra de 5 letras en el tablero, letra por letra, seleccionándolas del teclado.</p>
+                    <p>1. Escribe una palabra de 5 letras en el tablero, letra por letra, seleccionándolas del teclado virtual.</p>
                     <p>2. Una vez que hayas escrito una palabra, pulsa el botón "Comprobar" para ver si has adivinado la palabra correcta.</p>
                     <p>3. Las letras de tu intento se colorearán de acuerdo con las reglas de color explicadas anteriormente.</p>
                     <p>4. Tienes 6 intentos para adivinar la palabra correcta.</p>
                     <p>5. ¡Buena suerte!</p>
+                    <br></br>
+                    <h2>Dispositivos</h2>
+                    <p>Countrle es compatible con cualquier tipo de dispositivo que disponga de un navegador web moderno.</p>
+                    <p>Compatible con entrada táctil y física tanto en smartphones como equipos de escritorio.</p>
+                    <img class="imagen" alt="Teclado, ratón y entrada táctil" src={metodos_entrada}></img>
                 </div>
             </div>
         </div>

@@ -40,3 +40,16 @@
         font-size: 30px;
         font-weight: bold;
     }
+    
+    .imagen {
+        text-align: center !important;
+        width: 250px;
+    }
+
+    @media (prefers-color-scheme: light) {
+
+        .verde-r, .amarillo-r, .gris-r {
+            color: white;
+        }
+        
+      }
