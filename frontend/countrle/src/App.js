@@ -5,6 +5,8 @@ import Inicio from './components/Inicio';
 import AcercaDe from './components/AcercaDe';
 import Juego from './components/Juego';
 import Reglas from './components/Reglas';
+import Error404 from './components/Error404';
+import Error500 from './components/Error500';
 import logo from './logo.webp';
 import Login from './components/Login';
 import Estadisticas from './components/Estadisticas';
@@ -62,6 +64,8 @@ function App() {
             <Route path="/reglas" element={<Reglas />} />
             <Route path="/login" element={<Login />} />
             <Route path="/estadisticas" element={<Estadisticas />} />
+            <Route path="/500" element={<Error500 />} />
+            <Route path="/*" element={<Error404 />} />
           </Routes>
         </div>
         <Footer></Footer>
