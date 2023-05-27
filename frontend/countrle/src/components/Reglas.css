@@ -33,12 +33,8 @@
     }
     
     .color-descripcion span {
-        display: inline-block;
-        margin-bottom: 15px;
+        padding: 20px;
         margin-right: 15px;
-        text-align: center;
-        font-size: 30px;
-        font-weight: bold;
     }
     
     .imagen {

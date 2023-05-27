@@ -15,15 +15,15 @@ const Reglas = () => {
                     <br></br>
                     <h2>Código de colores</h2>
                     <div className="color-descripcion">
-                        <span className="verde-r">V</span>
+                        <span className="verde-r"></span>
                         <p>La letra está en la posición correcta.</p>
                     </div>
                     <div className="color-descripcion">
-                        <span className="amarillo-r">A</span>
+                        <span className="amarillo-r"></span>
                         <p>La letra está en la palabra pero no en la posición correcta.</p>
                     </div>
                     <div className="color-descripcion">
-                        <span className="gris-r">G</span>
+                        <span className="gris-r"></span>
                         <p>La letra no está en la palabra.</p>
                     </div>
                     <br></br>
