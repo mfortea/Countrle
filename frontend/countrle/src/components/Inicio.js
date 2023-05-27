@@ -17,12 +17,11 @@ const Inicio = () => {
           <a className="btn btn-large btn-primary" href="/login">¡Jugar Ahora!</a>
           <br></br>
           <br></br>
-          <br></br>
           <div class="container marketing">
 
             <div class="row featurette">
               <div class="col-md-7">
-                <h2 class="featurette-heading">Amplía tus horizontes geográficos <span class="text-muted">con Countrle.</span></h2>
+                <h2 class="featurette-heading text-center">Amplía tus horizontes geográficos <span class="text-muted">con Countrle.</span></h2>
                 <p class="lead">
                   En cada ronda, te presentaremos una palabra encriptada y tendrás que poner a prueba tu conocimiento y agudeza para descifrarla. Cada letra que aciertes te acercará más a la respuesta correcta y, en el proceso, aprenderás más sobre la geografía, la cultura y las tradiciones del país en cuestión
                   Con Countrle, te enfrentarás a retos cada vez más difíciles, pero el aprendizaje y la diversión están garantizados. No solo tendrás la oportunidad de demostrar cuánto sabes sobre geografía, sino que también podrás expandir tus horizontes y descubrir nuevos lugares y culturas que quizá no conocías.
@@ -37,7 +36,7 @@ const Inicio = () => {
 
             <div class="row featurette">
               <div class="col-md-7 order-md-2">
-                <h2 class="featurette-heading">Aprende mientras te diviertes <span class="text-muted">y reta a tus amigos.</span></h2>
+                <h2 class="featurette-heading text-center">Aprende mientras te diviertes <span class="text-muted">y reta a tus amigos.</span></h2>
                 <p class="lead">
                   Countrle es más que un simple juego; es una herramienta educativa que te ayudará a mejorar tus habilidades lingüísticas y de resolución de problemas, a la vez que te ofrece la oportunidad de sumergirte en la rica diversidad cultural de nuestro planeta.
 
@@ -53,13 +52,13 @@ const Inicio = () => {
 
             <div class="row featurette">
               <div class="col-md-7 order-md-2">
-                <h2 class="featurette-heading">Juega a Countrle <span class="text-muted">desde cualquier lugar.</span></h2>
+                <h2 class="featurette-heading text-center">Juega a Countrle <span class="text-muted">desde cualquier lugar.</span></h2>
                 <p class="lead">
                   Como aplicación progresiva, Countrle ofrece la máxima eficiencia y accesibilidad. Puedes instalarla directamente en tu dispositivo* y usarla como una aplicación nativa. Esto significa que puedes jugar Countrle sin importar si tienes conexión a internet o no, y experimentarás una velocidad y rendimiento óptimos en todo momento. Además, recibirás las actualizaciones tan pronto como estén disponibles, asegurando que siempre tengas la última versión de Countrle.
                   <br /><br />
                 </p>
               </div>
-              <div class="col-md-5 order-md-1">
+              <div class="col-md-5 order-md-2">
                 <img class="featurette-image img-fluid mx-auto" src={captura_pwa} alt="Captura de Countrle instalada en un iPhone"></img>
               </div>
             </div>
