@@ -15,12 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from words import views
-urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', views.home, name='home'),
-    path('getUsers/', views.getUsers),
-    path('post/', views.createUser),
-    path('putUser/<str:pk>', views.putUser),
-    path('delete/<str:pk>',views.deleteUser),
-]
+from words.views import getWords, getCountry
+from usermanager.views import getUsers
+from rest_framework import routers
+
+router = routers.DefaultRouter()
+
+router.register('api/words', getWords, 'words')
+router.register('api/country', getCountry, 'country')
+router.register('api/users', getUsers, 'user')
+
+urlpatterns = router.urls

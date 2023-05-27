@@ -1,7 +1,14 @@
 from rest_framework.serializers import ModelSerializer
-from django.contrib.auth.models import User
+from .models import Word, Country
 
-class UserSerializer(ModelSerializer):
+class WordSerializer(ModelSerializer):
     class Meta:
-        model = User
-        fields = ('username', 'password', 'email')
+        model = Word
+        fields = ('id', 'word','country', 'clue')
+        read_only_fields = ('id',)
+
+class CountrySerializer(ModelSerializer):
+    class Meta:
+        model = Country
+        fields = ('id', 'name', 'flag')
+        read_only_fields = ('id',) 
