@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import confetti from 'canvas-confetti';
+import { useNavigate } from 'react-router-dom';
 import sonidoConffeti from '../assets/sonidoConffeti.mp3';
 import './Juego.css';
 import Modal from './Modal';
 
 const Juego = () => {
+    const navigate = useNavigate();
     const palabra = 'nadie';
     const palabraObjetivo = palabra.toUpperCase();
     const [intento, setIntento] = useState(Array(5).fill(''));
@@ -22,11 +24,26 @@ const Juego = () => {
 
     const handleCloseLose = () => {
         setShowModalLose(false);
+        navigate('/estadisticas');
     }
 
     const handleCloseWin = () => {
         setShowModalWin(false);
+        navigate('/estadisticas');
     }
+
+    const contarLetras = (palabra) => {
+        const conteo = {};
+        palabra.forEach(letra => {
+            if (!conteo[letra]) {
+                conteo[letra] = 1;
+            } else {
+                conteo[letra] += 1;
+            }
+        });
+        return conteo;
+    };
+    
 
     useEffect(() => {
         if (ganador) {
@@ -69,16 +86,30 @@ const Juego = () => {
     };
     const comprobar = () => {
         if (intento.indexOf('') === -1 && indice < 6) {
+            const conteoObjetivo = contarLetras(palabraObjetivo.split(''));
+            const conteoIntento = contarLetras(intento);
+    
             const nuevoIntento = intento.map((letra, i) => {
                 let color = '';
-                if (letra === palabraObjetivo[i]) color = 'verde';
-                else if (palabraObjetivo.includes(letra)) color = 'amarillo';
-                else color = 'gris';
+                if (letra === palabraObjetivo[i]) {
+                    color = 'verde';
+                } else if (
+                    palabraObjetivo.includes(letra) &&
+                    (!conteoIntento[letra] || conteoIntento[letra] <= conteoObjetivo[letra])
+                ) {
+                    color = 'amarillo';
+                    conteoIntento[letra] -= 1;
+                } else {
+                    color = 'gris';
+                }
+    
                 if (letrasUsadas[letra] !== color) {
                     setLetrasUsadas({ ...letrasUsadas, [letra]: color });
                 }
+    
                 return { letra: letra, color: color };
             });
+            
             let nuevosIntentos = [...intentos];
             nuevosIntentos[indice] = nuevoIntento;
             setIntentos(nuevosIntentos);
@@ -95,6 +126,7 @@ const Juego = () => {
             }
         }
     };
+    
 
     const borrar = () => {
         let nuevoIntento = [...intento];
@@ -102,13 +134,40 @@ const Juego = () => {
         if (ultimoIndiceNoVacio !== -1) {
             nuevoIntento[ultimoIndiceNoVacio] = '';
             setIntento(nuevoIntento);
-            setIndiceActivo(nuevoIntento.lastIndexOf('') !== -1 ? nuevoIntento.lastIndexOf('') : 5);
-
+    
+            // Mover el índice activo a la última letra no vacía
+            const indiceActividadAjustado = ultimoIndiceNoVacio;
+            setIndiceActivo(indiceActividadAjustado >= 0 ? indiceActividadAjustado : 0);
+    
             let nuevosIntentos = [...intentos];
             nuevosIntentos[indice] = nuevoIntento.map(letra => ({ letra: letra, color: '' }));
             setIntentos(nuevosIntentos); // Actualizamos la matriz de intentos
         }
     };
+    
+
+    useEffect(() => {
+        const handleKeyDown = (event) => {
+            const letra = event.key.toUpperCase();
+            if (tecladoQWERTY.includes(letra)) {
+                manejarClick(letra);
+            }
+            else if (event.key === 'Enter') {
+                comprobar();
+            }
+            else if (event.key === 'Backspace') {
+                borrar();
+            }
+        };
+
+        window.addEventListener('keydown', handleKeyDown);
+
+        return () => {
+            window.removeEventListener('keydown', handleKeyDown);
+        };
+    }, [manejarClick, comprobar, borrar]);
+
+
 
     return (
         <div>

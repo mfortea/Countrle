@@ -46,6 +46,9 @@ function App() {
                     <Link onClick={() => { if (navbarCollapse.current.classList.contains('show')) navbarCollapse.current.classList.remove('show'); }} className="nav-link" to="/acercaDe">Acerca de</Link>
                   </li>
                   <li className="nav-item">
+                    <Link onClick={() => { if (navbarCollapse.current.classList.contains('show')) navbarCollapse.current.classList.remove('show'); }} className="nav-link" to="/estadisticas">Ranking</Link>
+                  </li>
+                  <li className="nav-item">
                     <Link onClick={() => { if (navbarCollapse.current.classList.contains('show')) navbarCollapse.current.classList.remove('show'); }} className="nav-link" to="/juego">Test juego</Link>
                   </li>
                 </ul>
