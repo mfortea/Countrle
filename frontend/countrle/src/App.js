@@ -6,8 +6,10 @@ import AcercaDe from './components/AcercaDe';
 import Juego from './components/Juego';
 import Reglas from './components/Reglas';
 import logo from './logo.webp';
-import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom';
 import Login from './components/Login';
+import Estadisticas from './components/Estadisticas';
+import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom';
+
 
 function App() {
   const navbarCollapse = useRef();
@@ -56,6 +58,7 @@ function App() {
             <Route path="/juego" element={<Juego />} />
             <Route path="/reglas" element={<Reglas />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/estadisticas" element={<Estadisticas />} />
           </Routes>
         </div>
         <Footer></Footer>
