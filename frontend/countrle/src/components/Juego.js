@@ -63,7 +63,6 @@ const Juego = () => {
         }
     }, [ganador]);
 
-
     const manejarClick = (letra) => {
         if (intento.indexOf('') === -1 && indice < 6) {
             if (indice === 0) {
@@ -78,12 +77,10 @@ const Juego = () => {
             let nuevosIntentos = [...intentos];
             nuevosIntentos[indice] = nuevoIntento.map(letra => ({ letra: letra, color: '' }));
             setIntentos(nuevosIntentos);
-            if (!letrasUsadas[letra]) {
-                setLetrasUsadas({ ...letrasUsadas, [letra]: 'gris' });
-            }
             setIndiceActivo(nuevoIntento.indexOf(''));
         }
     };
+    
     const comprobar = () => {
         if (intento.indexOf('') === -1 && indice < 6) {
             const conteoObjetivo = contarLetras(palabraObjetivo.split(''));
@@ -103,16 +100,20 @@ const Juego = () => {
                     color = 'gris';
                 }
     
-                if (letrasUsadas[letra] !== color) {
-                    setLetrasUsadas({ ...letrasUsadas, [letra]: color });
-                }
-    
                 return { letra: letra, color: color };
             });
-            
+    
             let nuevosIntentos = [...intentos];
             nuevosIntentos[indice] = nuevoIntento;
             setIntentos(nuevosIntentos);
+            
+            // Actualizamos los colores de las letras en el teclado
+            const letrasUsadasActuales = {...letrasUsadas};
+            nuevoIntento.forEach((item) => {
+                letrasUsadasActuales[item.letra] = item.color;
+            });
+            setLetrasUsadas(letrasUsadasActuales);
+            
             if (nuevoIntento.every((item) => item.color === 'verde')) {
                 setGanador(true);
                 setTiempoTotal(((Date.now() - tiempoInicio) / 1000).toFixed(2));
