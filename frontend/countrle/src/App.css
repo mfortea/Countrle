@@ -42,7 +42,7 @@ body, html {
 /*ESTILOS DEL MODO CLARO*/
 
 body {
-    background-image: url(assets/banderas-claro.webp);
+    background-image: url(assets/banderas-claro.png);
     background-repeat: repeat;
     background-attachment: fixed;
     /*animation: scrollBackground 40s infinite;*/
@@ -115,7 +115,7 @@ body {
 @media (prefers-color-scheme: dark) {
 
     body {
-        background-image: url(assets/banderas-oscuro.webp);
+        background-image: url(assets/banderas-oscuro.png);
         background-repeat: repeat;
         background-attachment: fixed;
         /*animation: scrollBackground 40s infinite;*/
@@ -162,19 +162,19 @@ body {
     }
 
     .navbar-toggler-icon:hover {
-        background-image: url(assets/menu-oscuro-hover.webp) !important;
+        background-image: url(assets/menu-oscuro-hover.png) !important;
         transition: 0.2s;
         filter: brightness(0.5);
     }
 
     .navbar-toggler-icon:active {
-        background-image: url(assets/menu-oscuro.webp) !important;
+        background-image: url(assets/menu-oscuro.png) !important;
         transition: 0.2s;
         filter: brightness(0.4);
     }
 
     .navbar-toggler-icon {
-        background-image: url(assets/menu-oscuro-hover.webp) !important;
+        background-image: url(assets/menu-oscuro-hover.png) !important;
         transition: 0.2s;
     }
 

@@ -7,7 +7,7 @@ import Juego from './components/Juego';
 import Reglas from './components/Reglas';
 import Error404 from './components/Error404';
 import Error500 from './components/Error500';
-import logo from './logo.webp';
+import logo from './logo.png';
 import Login from './components/Login';
 import Estadisticas from './components/Estadisticas';
 import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom';

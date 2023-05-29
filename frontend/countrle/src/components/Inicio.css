@@ -79,7 +79,7 @@ body {
 }
 
 #mundo {
-  background: url(../assets/mapa.webp);
+  background: url(../assets/mapa-full.jpg);
   background-size: cover;
   border: unset;
   border-radius: 50%;
@@ -166,4 +166,10 @@ hr {
     color: rgb(141, 164, 195) !important;
   }
   
+}
+
+@media (max-width: 350px) {
+  h1 {
+    font-size: 45px !important;
+  }
 }

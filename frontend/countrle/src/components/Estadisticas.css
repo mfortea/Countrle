@@ -8,7 +8,7 @@
     border-width: 2px;
     border-color: rgb(8, 164, 255);
     border-radius: 10px;
-    background-color: #494949;
+    background-color: #cccccc;
     margin-bottom: 20px;
 }
 
@@ -16,7 +16,7 @@
     border: 1px unset #ddd;
     padding: 20px;
     border-radius: 10px;
-    background-color: #494949;
+    background-color: #cccccc;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -25,11 +25,11 @@
 
 .fila_ranking {
     border: solid;
-    border-color: #363636;
     border-width: 2px;
     color: white;
     text-align: left;
-    background-color: #363636;
+    border-color: #7e7e7e;
+    background-color: #7e7e7e;
     border-radius: 15px;
     margin: 10px;
     padding: 10px;
@@ -101,19 +101,40 @@
     }
 }
 
-@media (prefers-color-scheme: light) {
+@media (prefers-color-scheme: dark) {
     .usuario-actual {
-        background-color: #cccccc;
+
+        background-color: #494949;
 
     }
     
     .ranking {
-        background-color: #cccccc;
+
+        background-color: #494949;
     }
 
     .fila_ranking {
-        border-color: #7e7e7e;
-        background-color: #7e7e7e;
+        border-color: #363636;
+        background-color: #363636;
     }
     
 }
+
+
+
+@media (max-width: 350px) {
+
+    .fila_ranking {
+        width: 220px;
+    }
+
+    .posicion {
+        font-size: 20px;
+        width: 50px;
+    }
+
+    .ranking {
+        font-size: 8px !important;
+    }
+
+  }

@@ -132,3 +132,27 @@ button.gris {
 #bBorrar:hover{
     background-color: rgb(87, 0, 0);
 }
+
+@media (max-width: 350px) {
+
+    .casilla {
+        width: 45px;
+        height: 45px;
+        margin: 2px;
+    }
+
+    button {
+        padding: 1px;
+    }
+
+    #bBorrar{
+        font-size: 18px !important;
+        width: 130px;
+    }
+
+    #bComprobar{
+        font-size: 18px !important;
+        width: 130px;
+    }
+
+  }
