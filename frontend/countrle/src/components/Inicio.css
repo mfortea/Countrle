@@ -172,4 +172,8 @@ hr {
   h1 {
     font-size: 45px !important;
   }
+  #mundo{
+    width: 120px;
+    height: 120px;
+  }
 }

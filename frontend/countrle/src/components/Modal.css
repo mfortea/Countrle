@@ -98,3 +98,11 @@ font-size: 100px;
     }
     
 }
+
+@media (max-width: 350px) {
+
+    .modal-main h1 {
+        font-size: 100px !important;
+        }
+
+  }

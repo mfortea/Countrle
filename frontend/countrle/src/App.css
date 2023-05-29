@@ -202,3 +202,29 @@ body {
     }
 
 }
+
+
+@media (max-width: 350px) {
+
+    #logo {
+        width: 35px;
+    }
+
+    .navbar-toggler {
+        width: 55px;
+        height: 35px;
+    }
+
+    .navbar-toggler-icon:hover {
+        background-image: url(assets/menu2.png) !important;
+    }
+
+    .navbar-toggler-icon:active {
+        background-image: url(assets/menu2.png) !important;
+    }
+
+    .navbar-toggler-icon {
+        background-image: url(assets/menu2.png) !important;
+    }
+
+  }
