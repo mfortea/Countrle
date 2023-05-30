@@ -37,13 +37,14 @@
 font-size: 100px;
 }
 
-.modal-main button{
+.modal-main .cerrar{
+    border: unset;
     background-color: rgb(137, 2, 2);
     color: white;
     width: 100px;
 }
 
-.modal-main button:hover{
+.modal-main .cerrar:hover{
     background-color: rgb(70, 0, 0);
     color: white;
     width: 100px;
@@ -53,8 +54,10 @@ font-size: 100px;
 .modal.display-block {
     display: block;
     animation-name: zoomIn;
-    animation-duration: 0.3s;
-    background-color: rgba(0,0,0,0.4);
+    animation-duration: 0.5s;
+    background-color: unset !important;
+    -webkit-backdrop-filter: saturate(180%) blur(35px);
+    backdrop-filter: saturate(180%) blur(40px);
 }
 
 .modal.display-none {

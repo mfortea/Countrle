@@ -133,6 +133,24 @@ button.gris {
     background-color: rgb(87, 0, 0);
 }
 
+.tipo_juego {
+    padding: 10px;
+    margin: 10px;
+    width: 80% !important;
+}
+
+h2 {
+    color: black;
+    margin-bottom: 30px;
+    font-size: 35px;
+}
+
+@media (prefers-color-scheme: dark) {
+    h2 {
+        color: white;
+    }
+    
+}
 @media (max-width: 350px) {
 
     .casilla {
@@ -153,6 +171,17 @@ button.gris {
     #bComprobar{
         font-size: 18px !important;
         width: 130px;
+    }
+
+    h2 {
+        font-size: 25px !important;
+    }
+
+    .tipo_juego {
+        font-size: 16px;
+        padding: 10px;
+        margin: 10px;
+        width: 60% !important;
     }
 
   }
