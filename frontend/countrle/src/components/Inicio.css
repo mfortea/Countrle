@@ -24,7 +24,7 @@ body {
 }
 
 .jumbotron h1 {
-  font-size: 65px;
+  font-size: 45px;
   line-height: 1;
 }
 
@@ -83,8 +83,8 @@ body {
   background-size: cover;
   border: unset;
   border-radius: 50%;
-  width: 200px;
-  height: 200px;
+  width: 150px;
+  height: 150px;
   margin: 2em auto;
   transform: translatey(0px);
 	animation: float 3s ease-in-out infinite;
@@ -168,7 +168,7 @@ hr {
   
 }
 
-@media (max-width: 350px) {
+@media (max-width: 370px) {
   h1 {
     font-size: 45px !important;
   }

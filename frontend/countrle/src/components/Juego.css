@@ -96,6 +96,7 @@ button:active {
     font-weight: bold;
     color: #008d0e;
 }
+
 button.verde {
     background-color: #6ca965;
 }
@@ -108,7 +109,7 @@ button.gris {
     background-color: #787c7f;
 }
 
-#bComprobar{
+#bComprobar {
     width: 150px;
     margin-right: 5px;
     font-size: 20px;
@@ -117,11 +118,11 @@ button.gris {
     background-color: rgb(0, 159, 29);
 }
 
-#bComprobar:hover{
+#bComprobar:hover {
     background-color: rgb(0, 87, 16);
 }
 
-#bBorrar{
+#bBorrar {
     width: 150px;
     font-size: 20px;
     font-weight: normal;
@@ -129,7 +130,7 @@ button.gris {
     background-color: rgb(159, 0, 0);
 }
 
-#bBorrar:hover{
+#bBorrar:hover {
     background-color: rgb(87, 0, 0);
 }
 
@@ -158,8 +159,9 @@ h2 {
     .tiempo {
         color: white;
     }
-    
+
 }
+
 @media (max-width: 350px) {
 
     .casilla {
@@ -172,12 +174,12 @@ h2 {
         padding: 1px;
     }
 
-    #bBorrar{
+    #bBorrar {
         font-size: 18px !important;
         width: 130px;
     }
 
-    #bComprobar{
+    #bComprobar {
         font-size: 18px !important;
         width: 130px;
     }
@@ -193,4 +195,17 @@ h2 {
         width: 60% !important;
     }
 
-  }
+}
+
+
+@media (max-width: 700px) {
+
+    h2 {
+        font-size: 24px;
+    }
+
+    .tipo_juego {
+        font-size: 20px;
+    }
+
+}
