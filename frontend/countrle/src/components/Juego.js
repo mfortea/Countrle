@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import confetti from "canvas-confetti";
 import { useNavigate } from "react-router-dom";
 import sonidoConffeti from "../assets/sonidoConffeti.mp3";
-import { CSSTransition, TransitionGroup } from "react-transition-group";
 import "./Juego.css";
 import logo from '../logo.png';
 import Modal from "./Modal";
@@ -218,6 +217,7 @@ const Juego = () => {
     };
   }, [manejarClick, comprobar, borrar]);
 
+  
   return (
     <div>
       <Modal show={showModalTipoJuego} handleClose={handleCloseTipoJuego}>
@@ -282,7 +282,7 @@ const Juego = () => {
                 Borrar 🗑️
               </button>
             </div>
-            <div class="tiempo">Tiempo transcurrido: {Math.floor(tiempoTranscurrido / 60)}:{(tiempoTranscurrido % 60).toFixed(0).padStart(2, "0")}</div>
+            <div class="tiempo">🕒 Tiempo transcurrido: {Math.floor(tiempoTranscurrido / 60)}:{(tiempoTranscurrido % 60).toFixed(0).padStart(2, "0")}</div>
           </div>
         </div>
       </div>

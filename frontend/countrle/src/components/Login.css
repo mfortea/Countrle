@@ -8,6 +8,22 @@
 }
 
 input {
+  border: unset !important;
   max-width:350px;
   margin: 0 auto;
+  transition: background-color 0.5s;
+}
+
+@media (prefers-color-scheme: dark) {
+  input {
+    background-color: rgb(86, 86, 86) !important;
+    border: unset !important;
+    color: white !important;
+    transition: background-color 0.5s;
+  }
+  input:hover {
+    background-color: rgb(107, 107, 107) !important;
+    transition: background-color 0.5s;
+  }
+
 }

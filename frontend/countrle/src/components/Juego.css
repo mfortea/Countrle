@@ -140,6 +140,10 @@ button.gris {
     width: 90% !important;
 }
 
+.tipo_juego:active {
+    background-color: rgb(0, 68, 147) !important;
+}
+
 h2 {
     color: black;
     margin-bottom: 30px;
@@ -196,7 +200,6 @@ h2 {
     }
 
 }
-
 
 @media (max-width: 700px) {
 

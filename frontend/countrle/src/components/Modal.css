@@ -44,10 +44,12 @@ font-size: 100px;
     width: 100px;
 }
 
+.modal-main .cerrar:active{
+    background-color: rgb(70, 0, 0) !important;
+}
+
 .modal-main .cerrar:hover{
-    background-color: rgb(70, 0, 0);
-    color: white;
-    width: 100px;
+    background-color: rgb(119, 0, 0);
 }
 
 
