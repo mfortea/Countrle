@@ -134,13 +134,13 @@ button.gris {
     background-color: rgb(87, 0, 0);
 }
 
-.tipo_juego {
+.tipoJuego {
     padding: 10px;
     margin: 10px;
     width: 90% !important;
 }
 
-.tipo_juego:active {
+.tipoJuego:active {
     background-color: rgb(0, 68, 147) !important;
 }
 
@@ -192,7 +192,7 @@ h2 {
         font-size: 25px !important;
     }
 
-    .tipo_juego {
+    .tipoJuego {
         font-size: 16px;
         padding: 10px;
         margin: 10px;
@@ -207,7 +207,7 @@ h2 {
         font-size: 24px;
     }
 
-    .tipo_juego {
+    .tipoJuego {
         font-size: 20px;
     }
 

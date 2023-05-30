@@ -3,14 +3,14 @@ import confetti from "canvas-confetti";
 import { useNavigate } from "react-router-dom";
 import sonidoConffeti from "../assets/sonidoConffeti.mp3";
 import "./Juego.css";
-import logo from '../logo.png';
+import logo from "../logo.png";
 import Modal from "./Modal";
-
+import Resumen from "./Resumen";
 
 const Juego = () => {
   const navigate = useNavigate();
   const [palabra, setPalabra] = useState("");
-  const [titulo_juego, setTituloJuego] = useState("");
+  const [tipoJuego, setTipoJuego] = useState("");
   const palabraObjetivo = palabra.toUpperCase();
   const [intento, setIntento] = useState(Array(5).fill(""));
   const [intentos, setIntentos] = useState(
@@ -21,22 +21,38 @@ const Juego = () => {
   const [letrasUsadas, setLetrasUsadas] = useState({});
   const [indiceActivo, setIndiceActivo] = useState(0);
   const [tiempoInicio, setTiempoInicio] = useState(null);
-  const [tiempoTotal, setTiempoTotal] = useState(null);
   const [tiempoTranscurrido, setTiempoTranscurrido] = useState(0);
   const tecladoQWERTY = "QWERTYUIOPASDFGHJKLÑZXCVBNM";
   const [showModalLose, setShowModalLose] = useState(false);
   const [showModalWin, setShowModalWin] = useState(false);
   const [showModalTipoJuego, setShowModalTipoJuego] = useState(true);
   const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+  const [tableroResumen, setTableroResumen] = useState(
+    Array(6).fill(Array(5).fill("⬜️"))
+  );
+
+  const datosResumen = () => {
+    localStorage.setItem(
+      "juegoData",
+      JSON.stringify({
+        palabraObjetivo,
+        tipoJuego,
+        tiempoTranscurrido,
+        tableroResumen,
+      })
+    );
+  };
 
   const handleCloseLose = () => {
     setShowModalLose(false);
-    navigate("/estadisticas");
+    navigate("/resumen");
+    datosResumen();
   };
 
   const handleCloseWin = () => {
     setShowModalWin(false);
-    navigate("/estadisticas");
+    navigate("/resumen");
+    datosResumen();
   };
 
   const handleCloseTipoJuego = () => {
@@ -46,14 +62,14 @@ const Juego = () => {
 
   const palabra_dia = () => {
     setPalabra("mango");
-    setTituloJuego("Palabra del día")
+    setTipoJuego("Palabra del día");
     setShowModalTipoJuego(false);
     setTiempoInicio(Date.now());
   };
 
   const palabra_aleatoria = () => {
     setPalabra("tigre");
-    setTituloJuego("Palabra Aleatoria")
+    setTipoJuego("Palabra Aleatoria");
     setShowModalTipoJuego(false);
     setTiempoInicio(Date.now());
   };
@@ -134,6 +150,7 @@ const Juego = () => {
 
       let nuevosIntentos = [...intentos];
       nuevosIntentos[indice] = nuevoIntento;
+
       setIntentos(nuevosIntentos);
 
       // Actualizamos los colores de las letras en el teclado
@@ -146,7 +163,6 @@ const Juego = () => {
       if (nuevoIntento.every((item) => item.color === "verde")) {
         setGanador(true);
         const tiempoActual = (Date.now() - tiempoInicio) / 1000;
-        setTiempoTotal(tiempoActual.toFixed(2));
         setShowModalWin(true);
       } else if (indice < 5) {
         setIndice(indice + 1);
@@ -155,6 +171,21 @@ const Juego = () => {
       } else {
         setShowModalLose(true);
       }
+
+      // Actualizamos el tablero de resumen con los emojis
+      const tableroEmoji = nuevoIntento.map((item) => {
+        if (item.color === "verde") {
+          return "🟩";
+        } else if (item.color === "amarillo") {
+          return "🟨";
+        } else {
+          return "⬜️";
+        }
+      });
+
+      let nuevoTableroResumen = [...tableroResumen];
+      nuevoTableroResumen[indice] = tableroEmoji;
+      setTableroResumen(nuevoTableroResumen);
     }
   };
 
@@ -164,14 +195,12 @@ const Juego = () => {
         const tiempoActual = ((Date.now() - tiempoInicio) / 1000).toFixed(2);
         setTiempoTranscurrido(tiempoActual);
       }, 1000);
-  
+
       return () => {
         clearInterval(interval);
       };
     }
   }, [tiempoInicio]);
-
-  
 
   const borrar = () => {
     let nuevoIntento = [...intento];
@@ -217,17 +246,15 @@ const Juego = () => {
     };
   }, [manejarClick, comprobar, borrar]);
 
-  
   return (
     <div>
       <Modal show={showModalTipoJuego} handleClose={handleCloseTipoJuego}>
-      <img id="logo-acercade" src={logo} alt="Logo" />
+        <img id="logo-acercade" src={logo} alt="Logo" />
         <h2>Selecciona el tipo de juego:</h2>
-
-        <button class="tipo_juego btn-primary" onClick={palabra_dia}>
-          Palabra del día ☀️ 
+        <button class="tipoJuego btn-primary" onClick={palabra_dia}>
+          Palabra del día ☀️
         </button>
-        <button class="tipo_juego btn-primary" onClick={palabra_aleatoria}>
+        <button class="tipoJuego btn-primary" onClick={palabra_aleatoria}>
           Palabra aleatoria 🎲
         </button>
         <br></br> <br></br>
@@ -246,7 +273,7 @@ const Juego = () => {
       <div class="container animacion-carga">
         <div class="jumbotron">
           <div className="juego">
-            <h2>{titulo_juego}</h2>
+            <h2>{tipoJuego}</h2>
             <div className="tablero">
               {intentos.map((intento, index) => (
                 <div key={index} className="fila">
@@ -282,7 +309,10 @@ const Juego = () => {
                 Borrar 🗑️
               </button>
             </div>
-            <div class="tiempo">🕒 Tiempo transcurrido: {Math.floor(tiempoTranscurrido / 60)}:{(tiempoTranscurrido % 60).toFixed(0).padStart(2, "0")}</div>
+            <div class="tiempo">
+              🕒 Tiempo transcurrido: {Math.floor(tiempoTranscurrido / 60)}:
+              {(tiempoTranscurrido % 60).toFixed(0).padStart(2, "0")}
+            </div>
           </div>
         </div>
       </div>

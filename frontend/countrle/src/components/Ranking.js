@@ -1,7 +1,7 @@
 import React from 'react';
-import './Estadisticas.css';
+import './Ranking.css';
 
-const Estadisticas = () => {
+const Ranking = () => {
     // Aquí irán tus datos reales. Estos son solo de prueba.
     const usuarioActual = { nombre: 'Usuario6', puntuacion: 150, posicion: 5 };
     const ranking = [
@@ -60,4 +60,4 @@ const Estadisticas = () => {
     );
 };
 
-export default Estadisticas;
+export default Ranking;

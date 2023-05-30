@@ -8,9 +8,10 @@ import Reglas from './components/Reglas';
 import Error404 from './components/Error404';
 import Error500 from './components/Error500';
 import Registro from './components/Registro';
-import logo from './logo.png';
 import Login from './components/Login';
-import Estadisticas from './components/Estadisticas';
+import Resumen from './components/Resumen';
+import logo from './logo.png';
+import Ranking from './components/Ranking';
 import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom';
 
 
@@ -49,7 +50,7 @@ function App() {
                     <Link onClick={() => { if (navbarCollapse.current.classList.contains('show')) navbarCollapse.current.classList.remove('show'); }} className="nav-link" to="/acercaDe">Acerca de</Link>
                   </li>
                   <li className="nav-item">
-                    <Link onClick={() => { if (navbarCollapse.current.classList.contains('show')) navbarCollapse.current.classList.remove('show'); }} className="nav-link" to="/estadisticas">Ranking</Link>
+                    <Link onClick={() => { if (navbarCollapse.current.classList.contains('show')) navbarCollapse.current.classList.remove('show'); }} className="nav-link" to="/ranking">Ranking</Link>
                   </li>
                   <li className="nav-item">
                     <Link onClick={() => { if (navbarCollapse.current.classList.contains('show')) navbarCollapse.current.classList.remove('show'); }} className="nav-link" to="/juego">Test juego</Link>
@@ -65,7 +66,8 @@ function App() {
             <Route path="/reglas" element={<Reglas />} />
             <Route path="/login" element={<Login />} />
             <Route path="/registro" element={<Registro />} />
-            <Route path="/estadisticas" element={<Estadisticas />} />
+            <Route path="/resumen" element={<Resumen />} />
+            <Route path="/ranking" element={<Ranking />} />
             <Route path="/500" element={<Error500 />} />
             <Route path="/*" element={<Error404 />} />
           </Routes>

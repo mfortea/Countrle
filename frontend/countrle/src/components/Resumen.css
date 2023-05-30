@@ -1,0 +1,34 @@
+.boton-ranking {
+    margin: 20px;
+    background-color: #04ab2b;
+    color: rgb(255, 255, 255);
+    padding: 15px;
+    border: unset;
+    border-radius: 10px;
+    font-size: 20px;
+    transition: background-color 0.4s;
+    text-decoration: none !important;
+}
+
+.boton-ranking:hover {
+    color: white;
+    background-color:  #299141;
+    transition: background-color 0.4s;
+}
+
+.boton-ranking:active {
+    background-color:  #103c1b;
+    transition: background-color 0.4s;
+}
+
+
+@media (prefers-color-scheme: dark) {
+    .boton-ranking {
+        background-color: #237d38;
+    }
+    
+    .boton-ranking:hover {
+        color: white;
+        background-color:  #165024;
+    }
+}
