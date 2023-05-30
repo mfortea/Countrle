@@ -23,6 +23,7 @@ const Juego = () => {
   const [indiceActivo, setIndiceActivo] = useState(0);
   const [tiempoInicio, setTiempoInicio] = useState(null);
   const [tiempoTotal, setTiempoTotal] = useState(null);
+  const [tiempoTranscurrido, setTiempoTranscurrido] = useState(0);
   const tecladoQWERTY = "QWERTYUIOPASDFGHJKLÑZXCVBNM";
   const [showModalLose, setShowModalLose] = useState(false);
   const [showModalWin, setShowModalWin] = useState(false);
@@ -48,12 +49,14 @@ const Juego = () => {
     setPalabra("mango");
     setTituloJuego("Palabra del día")
     setShowModalTipoJuego(false);
+    setTiempoInicio(Date.now());
   };
 
   const palabra_aleatoria = () => {
     setPalabra("tigre");
     setTituloJuego("Palabra Aleatoria")
     setShowModalTipoJuego(false);
+    setTiempoInicio(Date.now());
   };
 
   const contarLetras = (palabra) => {
@@ -143,7 +146,8 @@ const Juego = () => {
 
       if (nuevoIntento.every((item) => item.color === "verde")) {
         setGanador(true);
-        setTiempoTotal(((Date.now() - tiempoInicio) / 1000).toFixed(2));
+        const tiempoActual = (Date.now() - tiempoInicio) / 1000;
+        setTiempoTotal(tiempoActual.toFixed(2));
         setShowModalWin(true);
       } else if (indice < 5) {
         setIndice(indice + 1);
@@ -154,6 +158,21 @@ const Juego = () => {
       }
     }
   };
+
+  useEffect(() => {
+    if (tiempoInicio) {
+      const interval = setInterval(() => {
+        const tiempoActual = ((Date.now() - tiempoInicio) / 1000).toFixed(2);
+        setTiempoTranscurrido(tiempoActual);
+      }, 1000);
+  
+      return () => {
+        clearInterval(interval);
+      };
+    }
+  }, [tiempoInicio]);
+
+  
 
   const borrar = () => {
     let nuevoIntento = [...intento];
@@ -263,6 +282,7 @@ const Juego = () => {
                 Borrar 🗑️
               </button>
             </div>
+            <div class="tiempo">Tiempo transcurrido: {Math.floor(tiempoTranscurrido / 60)}:{(tiempoTranscurrido % 60).toFixed(0).padStart(2, "0")}</div>
           </div>
         </div>
       </div>

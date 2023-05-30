@@ -145,8 +145,17 @@ h2 {
     font-size: 35px;
 }
 
+.tiempo {
+    font-size: 18px;
+}
+
+
 @media (prefers-color-scheme: dark) {
     h2 {
+        color: white;
+    }
+
+    .tiempo {
         color: white;
     }
     
