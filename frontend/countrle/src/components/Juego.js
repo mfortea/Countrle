@@ -10,6 +10,10 @@ import Resumen from "./Resumen";
 const Juego = () => {
   const navigate = useNavigate();
   const [palabra, setPalabra] = useState("");
+  const [mostrarPista, setMostrarPista] = useState(false);
+  const [bandera, setBandera] = useState("");
+  const [pistaUsada, setPistaUsada] = useState(false);
+  const [puntos, setPuntos] = useState(0);
   const [tipoJuego, setTipoJuego] = useState("");
   const palabraObjetivo = palabra.toUpperCase();
   const [intento, setIntento] = useState(Array(5).fill(""));
@@ -26,6 +30,7 @@ const Juego = () => {
   const [showModalLose, setShowModalLose] = useState(false);
   const [showModalWin, setShowModalWin] = useState(false);
   const [showModalTipoJuego, setShowModalTipoJuego] = useState(true);
+  const [pista, setPista] = useState("");
   const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
   const [tableroResumen, setTableroResumen] = useState(
     Array(6).fill(Array(5).fill("⬜️"))
@@ -39,6 +44,8 @@ const Juego = () => {
         tipoJuego,
         tiempoTranscurrido,
         tableroResumen,
+        pistaUsada,
+        puntos,
       })
     );
   };
@@ -62,14 +69,18 @@ const Juego = () => {
 
   const palabra_dia = () => {
     setPalabra("mango");
+    setPista("Es una fruta tropical");
     setTipoJuego("Palabra del día");
+    setBandera("&#127466;&#127480;");
     setShowModalTipoJuego(false);
     setTiempoInicio(Date.now());
   };
 
   const palabra_aleatoria = () => {
     setPalabra("tigre");
+    setPista("Es un gran felino");
     setTipoJuego("Palabra Aleatoria");
+    setBandera("&#127466;&#127480;");
     setShowModalTipoJuego(false);
     setTiempoInicio(Date.now());
   };
@@ -129,40 +140,53 @@ const Juego = () => {
     if (intento.indexOf("") === -1 && indice < 6) {
       const conteoObjetivo = contarLetras(palabraObjetivo.split(""));
       const conteoIntento = contarLetras(intento);
-
+  
+      let puntosPorIntento = 0;
       const nuevoIntento = intento.map((letra, i) => {
         let color = "";
         if (letra === palabraObjetivo[i]) {
           color = "verde";
+          puntosPorIntento += 10;  // añadir puntos por letra correcta en la posición correcta
         } else if (
           palabraObjetivo.includes(letra) &&
           (!conteoIntento[letra] ||
             conteoIntento[letra] <= conteoObjetivo[letra])
         ) {
           color = "amarillo";
+          puntosPorIntento += 5;  // añadir puntos por letra correcta en la posición incorrecta
           conteoIntento[letra] -= 1;
         } else {
           color = "gris";
         }
-
+  
         return { letra: letra, color: color };
       });
-
+  
+      setPuntos(puntosPrevios => puntosPrevios + puntosPorIntento);  // actualizar los puntos totales
+  
       let nuevosIntentos = [...intentos];
       nuevosIntentos[indice] = nuevoIntento;
-
+  
       setIntentos(nuevosIntentos);
-
+  
       // Actualizamos los colores de las letras en el teclado
       const letrasUsadasActuales = { ...letrasUsadas };
       nuevoIntento.forEach((item) => {
         letrasUsadasActuales[item.letra] = item.color;
       });
       setLetrasUsadas(letrasUsadasActuales);
-
+  
       if (nuevoIntento.every((item) => item.color === "verde")) {
         setGanador(true);
         const tiempoActual = (Date.now() - tiempoInicio) / 1000;
+        // bonificaciones por tiempo
+        if (tiempoTranscurrido <= 15) {
+          setPuntos(prevPuntos => prevPuntos + 60); 
+        } else if (tiempoTranscurrido <= 30) {
+          setPuntos(prevPuntos => prevPuntos + 40); 
+        } else if (tiempoTranscurrido <= 60) {
+          setPuntos(prevPuntos => prevPuntos + 20); 
+        }
         setShowModalWin(true);
       } else if (indice < 5) {
         setIndice(indice + 1);
@@ -171,7 +195,7 @@ const Juego = () => {
       } else {
         setShowModalLose(true);
       }
-
+  
       // Actualizamos el tablero de resumen con los emojis
       const tableroEmoji = nuevoIntento.map((item) => {
         if (item.color === "verde") {
@@ -182,12 +206,13 @@ const Juego = () => {
           return "⬜️";
         }
       });
-
+  
       let nuevoTableroResumen = [...tableroResumen];
       nuevoTableroResumen[indice] = tableroEmoji;
       setTableroResumen(nuevoTableroResumen);
     }
   };
+  
 
   useEffect(() => {
     if (tiempoInicio) {
@@ -274,6 +299,7 @@ const Juego = () => {
         <div class="jumbotron">
           <div className="juego">
             <h2>{tipoJuego}</h2>
+            <p id="bandera" dangerouslySetInnerHTML={{ __html: bandera }}></p>
             <div className="tablero">
               {intentos.map((intento, index) => (
                 <div key={index} className="fila">
@@ -301,6 +327,24 @@ const Juego = () => {
                 </button>
               ))}
             </div>
+            {indice === 5 && (
+              <div>
+                <br></br>
+                <button
+                  class="bPista"
+                  onClick={() => {
+                    setMostrarPista(!mostrarPista);
+                    setPistaUsada(true);
+                    setPuntos(prevPuntos => prevPuntos - 20);
+                  }}
+                >
+                  {mostrarPista ? "Ocultar pista" : "🔍 Ver pista"}
+                </button>
+
+                {mostrarPista && <p id="textoPista">Pista: {pista}</p>}
+              </div>
+            )}
+
             <div className="botones">
               <button id="bComprobar" onClick={comprobar}>
                 Comprobar ✅

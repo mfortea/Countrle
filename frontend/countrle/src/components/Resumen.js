@@ -4,6 +4,7 @@ import "./Resumen.css";
 const Resumen = () => {
   const juegoData = JSON.parse(localStorage.getItem("juegoData"));
   const tiempo = parseInt(juegoData.tiempoTranscurrido);
+  const pistaUsada = juegoData.pistaUsada;
   return (
     <div>
       <br></br>
@@ -18,6 +19,9 @@ const Resumen = () => {
               <div key={index}>{fila.join(" ")}</div>
             ))}
           </div>
+          <br></br>
+          <h3>Has conseguido {juegoData.puntos} puntos en esta partida</h3>
+          <h3>{pistaUsada ? "Has usado la pista 😒" : "No has usado pistas 🎉"}</h3>
           <br></br>
           <div className="tiempo">
             {tiempo < 60
