@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 class Country(models.Model):
     name = models.CharField(default='nulo', max_length=200)
-    flag = models.ImageField(upload_to ='uploads/% Y/% m/% d/', max_length=4000)
+    flag = models.ImageField(upload_to ='uploads/', max_length=4000)
 
 class Word(models.Model):
     word = models.CharField(max_length=5)

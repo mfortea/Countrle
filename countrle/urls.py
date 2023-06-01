@@ -15,13 +15,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from words.views import getWords, getCountry
+from words.views import getWords, getCountry, getRandomWord
 from usermanager.views import getUsers
 from rest_framework import routers
 
 router = routers.DefaultRouter()
 
+#router.register('admin', admin.site.urls, 'admin')
 router.register('api/words', getWords, 'words')
+router.register('api/random', getRandomWord, 'random')
 router.register('api/country', getCountry, 'country')
 router.register('api/users', getUsers, 'user')
 

@@ -1,16 +1,25 @@
 from django.shortcuts import render
-from django.contrib.auth.forms import UserCreationForm
 from .models import Word, Country
-from django.http import HttpResponse
 from rest_framework import viewsets, permissions
-from rest_framework.response import Response
-from rest_framework.serializers import Serializer
 from rest_framework.decorators import api_view
+import random
+import datetime
 from .serializers import WordSerializer, CountrySerializer
 
 # Create your views here.
 class getWords(viewsets.ModelViewSet):
-    queryset = Word.objects.all()
+    queryset = None
+    created = None
+    if(queryset == None or created != datetime.date.today()):
+        random_idx = random.randint(0, Word.objects.count() - 1)
+        queryset = Word.objects.filter(id=random_idx)
+        created = datetime.date.today()
+    permission_classes = [permissions.AllowAny]
+    serializer_class = WordSerializer
+
+class getRandomWord(viewsets.ModelViewSet):
+    random_idx = random.randint(0, Word.objects.count() - 1)
+    queryset = Word.objects.filter(id=random_idx)
     permission_classes = [permissions.AllowAny]
     serializer_class = WordSerializer
 
