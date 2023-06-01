@@ -5,9 +5,15 @@ import Inicio from './components/Inicio';
 import AcercaDe from './components/AcercaDe';
 import Juego from './components/Juego';
 import Reglas from './components/Reglas';
-import logo from './logo.webp';
-import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom';
+import Error404 from './components/Error404';
+import Error500 from './components/Error500';
+import Registro from './components/Registro';
 import Login from './components/Login';
+import Resumen from './components/Resumen';
+import logo from './logo.png';
+import Ranking from './components/Ranking';
+import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom';
+
 
 function App() {
   const navbarCollapse = useRef();
@@ -44,6 +50,9 @@ function App() {
                     <Link onClick={() => { if (navbarCollapse.current.classList.contains('show')) navbarCollapse.current.classList.remove('show'); }} className="nav-link" to="/acercaDe">Acerca de</Link>
                   </li>
                   <li className="nav-item">
+                    <Link onClick={() => { if (navbarCollapse.current.classList.contains('show')) navbarCollapse.current.classList.remove('show'); }} className="nav-link" to="/ranking">Ranking</Link>
+                  </li>
+                  <li className="nav-item">
                     <Link onClick={() => { if (navbarCollapse.current.classList.contains('show')) navbarCollapse.current.classList.remove('show'); }} className="nav-link" to="/juego">Test juego</Link>
                   </li>
                 </ul>
@@ -56,6 +65,11 @@ function App() {
             <Route path="/juego" element={<Juego />} />
             <Route path="/reglas" element={<Reglas />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/registro" element={<Registro />} />
+            <Route path="/resumen" element={<Resumen />} />
+            <Route path="/ranking" element={<Ranking />} />
+            <Route path="/500" element={<Error500 />} />
+            <Route path="/*" element={<Error404 />} />
           </Routes>
         </div>
         <Footer></Footer>

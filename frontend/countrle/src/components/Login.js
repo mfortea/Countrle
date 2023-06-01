@@ -30,14 +30,9 @@ const Login = () => {
                 <div class="col d-flex justify-content-center">
 
                   <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="form2Example31" checked />
-                    <label class="form-check-label" for="form2Example31"> Recuérdame </label>
+                    <input class="form-check-input" type="checkbox" value="" id="checkbox" />
+                    <label class="form-check-label" for="checkbox"> Recuérdame </label>
                   </div>
-                </div>
-
-                <div class="col">
-
-                  <a href="#!">He olvidado mi contraseña</a>
                 </div>
               </div>
 
@@ -46,7 +41,7 @@ const Login = () => {
 
 
               <div class="text-center">
-                <p>¿No estás registrado? <a href="#!">Registrarse</a></p>
+                <p>¿No estás registrado? <a href="/registro">Registrarse</a></p>
               </div>
             </form>
           </div>

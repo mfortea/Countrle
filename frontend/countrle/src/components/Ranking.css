@@ -1,0 +1,141 @@
+.estadisticas p{
+    font-size: 18px;
+}
+
+.usuario-actual {
+    padding: 20px;
+    border: solid;
+    border-width: 2px;
+    border-color: rgb(8, 164, 255);
+    border-radius: 10px;
+    background-color: #cccccc;
+    margin-bottom: 20px;
+}
+
+.ranking {
+    border: 1px unset #ddd;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #cccccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.fila_ranking {
+    border: solid;
+    border-width: 2px;
+    color: white;
+    text-align: left;
+    border-color: #7e7e7e;
+    background-color: #7e7e7e;
+    border-radius: 15px;
+    margin: 10px;
+    padding: 10px;
+    transition: background-color 0.3s;
+    display: flex;
+    align-items: center;
+    width: 320px;
+}
+
+.fila_ranking:hover {
+    border: solid;
+    border-width: 2px;
+    border-color: white;
+    background-color: rgb(69, 69, 69);
+    transition: background-color 0.3s;
+}
+
+.posicion_1 .posicion {
+    background-color: gold;
+    animation-name: destello;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+}
+
+.posicion_2 .posicion {
+    background-color: silver;
+    animation-name: destello;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+}
+
+.posicion_3 .posicion {
+    background-color: #b87333;
+    animation-name: destello;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+}
+
+.posicion {
+    color: black;
+    font-weight: bold;
+    font-size: 30px;
+    background-color: rgb(145, 189, 255);
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    margin: 15px;
+}
+
+@keyframes destello {
+    0% { filter: brightness(100%); }
+    50% { filter: brightness(150%); }
+    100% { filter: brightness(100%); }
+}
+
+.contenedor_ranking {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (max-width: 1000px) {
+    .contenedor_ranking {
+        flex-direction: column;
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    .usuario-actual {
+
+        background-color: #494949;
+
+    }
+    
+    .ranking {
+
+        background-color: #494949;
+    }
+
+    .fila_ranking {
+        border-color: #363636;
+        background-color: #363636;
+    }
+    
+}
+
+
+
+@media (max-width: 350px) {
+
+    .fila_ranking {
+        width: 220px;
+    }
+
+    .posicion {
+        font-size: 20px;
+        width: 50px;
+    }
+
+    .ranking {
+        font-size: 8px !important;
+    }
+
+  }
+  

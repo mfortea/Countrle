@@ -3,7 +3,7 @@ import './Footer.css';
 
 const Footer = () => {
   const anoActual = new Date().getFullYear(); // obtiene el año actual
-  const copyrightText = `Countrle © ${anoActual} Todos los derechos reservados`; // usa una template string para insertar el año
+  const copyrightText = `Countrle © ${anoActual}`; // usa una template string para insertar el año
 
   return (
     <footer className="footer">

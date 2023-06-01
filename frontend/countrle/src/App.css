@@ -18,34 +18,35 @@ body, html {
     height: 100%;
     margin: 0;
     padding: 0;
-  }
-  
-  #contenedor {
+}
+
+#contenedor {
     display: flex;
     flex-direction: column;
-    min-height: 100vh; /* Cambia a 100vh para que ocupe la totalidad de la vista del viewport */
-  }
+    min-height: 100vh;
+    /* Cambia a 100vh para que ocupe la totalidad de la vista del viewport */
+}
 
-  .nav-link {
+.nav-link {
     cursor: pointer;
-  }
+}
 
-  @media (min-width: 992px) {
+@media (min-width: 992px) {
     .navbar-nav .nav-item {
-      width: 100px;
-      flex-grow: 0;
+        width: 100px;
+        flex-grow: 0;
     }
-  }
+}
 
 
-  
+
 /*ESTILOS DEL MODO CLARO*/
 
 body {
-    background-image: url(assets/banderas-claro.webp);
+    background-image: url(assets/banderas-claro.png);
     background-repeat: repeat;
     background-attachment: fixed;
-    animation: scrollBackground 40s infinite;
+    /*animation: scrollBackground 40s infinite;*/
 }
 
 
@@ -55,12 +56,12 @@ body {
     transition: 0.2s;
 }
 
-#logo:hover{
+#logo:hover {
     filter: brightness(0.7);
     transition: 0.2s;
 }
 
-#logo:active{
+#logo:active {
     filter: brightness(0.3);
 }
 
@@ -105,15 +106,21 @@ body {
     border: none;
 }
 
+.navbar-toggler {
+    outline: none !important;
+}
+
+
 
 /*ESTILOS DEL MODO OSCURO*/
 @media (prefers-color-scheme: dark) {
 
     body {
-        background-image: url(assets/banderas-oscuro.webp);
+        background-image: url(assets/banderas-oscuro.png);
         background-repeat: repeat;
         background-attachment: fixed;
-        animation: scrollBackground 50s infinite;
+        /*animation: scrollBackground 40s infinite;*/
+
     }
 
     @keyframes scrollBackground {
@@ -145,7 +152,6 @@ body {
         left: 0;
         right: 0;
         z-index: 100 !important;
-        /* Asegura que el menú esté por encima de otros elementos */
     }
 
     .nav-link {
@@ -157,25 +163,26 @@ body {
     }
 
     .navbar-toggler-icon:hover {
-        background-image: url(assets/menu-oscuro-hover.webp) !important;
+        background-image: url(assets/menu-oscuro-hover.png) !important;
         transition: 0.2s;
         filter: brightness(0.5);
     }
 
     .navbar-toggler-icon:active {
-        background-image: url(assets/menu-oscuro.webp) !important;
+        background-image: url(assets/menu-oscuro.png) !important;
         transition: 0.2s;
         filter: brightness(0.4);
     }
 
     .navbar-toggler-icon {
-        background-image: url(assets/menu-oscuro-hover.webp) !important;
+        background-image: url(assets/menu-oscuro-hover.png) !important;
         transition: 0.2s;
     }
 
     .navbar-toggler {
         background-color: #242424 !important;
         border: unset !important;
+        outline: none !important;
     }
 
     .nav-item {
@@ -193,6 +200,31 @@ body {
         color: white !important;
         background-color: #1875ff;
         border: none;
+    }
+
+}
+
+@media (max-width: 370px) {
+
+    #logo {
+        width: 35px;
+    }
+
+    .navbar-toggler {
+        width: 55px;
+        height: 35px;
+    }
+
+    .navbar-toggler-icon:hover {
+        background-image: url(assets/menu2.png) !important;
+    }
+
+    .navbar-toggler-icon:active {
+        background-image: url(assets/menu2.png) !important;
+    }
+
+    .navbar-toggler-icon {
+        background-image: url(assets/menu2.png) !important;
     }
 
 }

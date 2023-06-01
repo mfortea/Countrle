@@ -96,6 +96,7 @@ button:active {
     font-weight: bold;
     color: #008d0e;
 }
+
 button.verde {
     background-color: #6ca965;
 }
@@ -108,7 +109,7 @@ button.gris {
     background-color: #787c7f;
 }
 
-#bComprobar{
+#bComprobar {
     width: 150px;
     margin-right: 5px;
     font-size: 20px;
@@ -117,11 +118,11 @@ button.gris {
     background-color: rgb(0, 159, 29);
 }
 
-#bComprobar:hover{
+#bComprobar:hover {
     background-color: rgb(0, 87, 16);
 }
 
-#bBorrar{
+#bBorrar {
     width: 150px;
     font-size: 20px;
     font-weight: normal;
@@ -129,6 +130,85 @@ button.gris {
     background-color: rgb(159, 0, 0);
 }
 
-#bBorrar:hover{
+#bBorrar:hover {
     background-color: rgb(87, 0, 0);
+}
+
+.tipoJuego {
+    padding: 10px;
+    margin: 10px;
+    width: 90% !important;
+}
+
+.tipoJuego:active {
+    background-color: rgb(0, 68, 147) !important;
+}
+
+h2 {
+    color: black;
+    margin-bottom: 30px;
+    font-size: 35px;
+}
+
+.tiempo {
+    font-size: 18px;
+}
+
+
+@media (prefers-color-scheme: dark) {
+    h2 {
+        color: white;
+    }
+
+    .tiempo {
+        color: white;
+    }
+
+}
+
+@media (max-width: 350px) {
+
+    .casilla {
+        width: 45px;
+        height: 45px;
+        margin: 2px;
+    }
+
+    button {
+        padding: 1px;
+    }
+
+    #bBorrar {
+        font-size: 18px !important;
+        width: 130px;
+    }
+
+    #bComprobar {
+        font-size: 18px !important;
+        width: 130px;
+    }
+
+    h2 {
+        font-size: 25px !important;
+    }
+
+    .tipoJuego {
+        font-size: 16px;
+        padding: 10px;
+        margin: 10px;
+        width: 60% !important;
+    }
+
+}
+
+@media (max-width: 700px) {
+
+    h2 {
+        font-size: 24px;
+    }
+
+    .tipoJuego {
+        font-size: 20px;
+    }
+
 }

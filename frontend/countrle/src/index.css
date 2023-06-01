@@ -21,3 +21,12 @@ code {
   font-style: italic;
   font-size: 16px;
 }
+
+.error{
+  font-weight: bold;
+  color: rgba(241, 2, 2, 0.77);
+}
+
+.error_emoji {
+  font-size: 120px;
+}
