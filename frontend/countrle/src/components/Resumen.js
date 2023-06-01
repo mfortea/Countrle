@@ -10,7 +10,7 @@ const Resumen = () => {
   useEffect(() => {
     if (juegoData.ganador) {
       confetti({
-        particleCount: 100,
+        particleCount: 220,
         spread: 150,
         origin: { x: 0.5 },
       });
