@@ -22,8 +22,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-#SECRET_KEY = os.environment.get('SECRET_KEY', default = 'django-insecure-86elhh!%!k-p_m9gmrg5!y0!87#q6fc9g%f3snpvj-5ir&@6^-')
-SECRET_KEY = 'django-insecure-86elhh!%!k-p_m9gmrg5!y0!87#q6fc9g%f3snpvj-5ir&@6^-'
+SECRET_KEY = os.environ.get('SECRET_KEY', default = 'django-insecure-86elhh!%!k-p_m9gmrg5!y0!87#q6fc9g%f3snpvj-5ir&@6^-')
+#SECRET_KEY = 'django-insecure-86elhh!%!k-p_m9gmrg5!y0!87#q6fc9g%f3snpvj-5ir&@6^-'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = 'RENDER' not in os.environ
 
@@ -62,6 +62,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'countrle.urls'
@@ -140,6 +141,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'flags/'
+
+if not DEBUG:
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
