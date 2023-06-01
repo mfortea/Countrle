@@ -26,6 +26,8 @@ const Juego = () => {
   const [indiceActivo, setIndiceActivo] = useState(0);
   const [tiempoInicio, setTiempoInicio] = useState(null);
   const [tiempoTranscurrido, setTiempoTranscurrido] = useState(0);
+  const [penalizacionPorPistaAplicada, setPenalizacionPorPistaAplicada] =
+    useState(false);
   const tecladoQWERTY = "QWERTYUIOPASDFGHJKLÑZXCVBNM";
   const [showModalLose, setShowModalLose] = useState(false);
   const [showModalWin, setShowModalWin] = useState(false);
@@ -45,7 +47,7 @@ const Juego = () => {
         tiempoTranscurrido,
         tableroResumen,
         pistaUsada,
-        puntos,
+        puntos: puntos < 0 ? 0 : puntos, // garantiza que los puntos no sean negativos
       })
     );
   };
@@ -53,12 +55,18 @@ const Juego = () => {
   const handleCloseLose = () => {
     setShowModalLose(false);
     navigate("/resumen");
+    if (puntos < 0) {
+      setPuntos(0); // asegura que los puntos no son negativos
+    }
     datosResumen();
   };
 
   const handleCloseWin = () => {
     setShowModalWin(false);
     navigate("/resumen");
+    if (puntos < 0) {
+      setPuntos(0); // asegura que los puntos no son negativos
+    }
     datosResumen();
   };
 
@@ -140,52 +148,52 @@ const Juego = () => {
     if (intento.indexOf("") === -1 && indice < 6) {
       const conteoObjetivo = contarLetras(palabraObjetivo.split(""));
       const conteoIntento = contarLetras(intento);
-  
+
       let puntosPorIntento = 0;
       const nuevoIntento = intento.map((letra, i) => {
         let color = "";
         if (letra === palabraObjetivo[i]) {
           color = "verde";
-          puntosPorIntento += 10;  // añadir puntos por letra correcta en la posición correcta
+          puntosPorIntento += 10; // añadir puntos por letra correcta en la posición correcta
         } else if (
           palabraObjetivo.includes(letra) &&
           (!conteoIntento[letra] ||
             conteoIntento[letra] <= conteoObjetivo[letra])
         ) {
           color = "amarillo";
-          puntosPorIntento += 5;  // añadir puntos por letra correcta en la posición incorrecta
+          puntosPorIntento += 5; // añadir puntos por letra correcta en la posición incorrecta
           conteoIntento[letra] -= 1;
         } else {
           color = "gris";
         }
-  
+
         return { letra: letra, color: color };
       });
-  
-      setPuntos(puntosPrevios => puntosPrevios + puntosPorIntento);  // actualizar los puntos totales
-  
+
+      setPuntos((puntosPrevios) => puntosPrevios + puntosPorIntento); // actualizar los puntos totales
+
       let nuevosIntentos = [...intentos];
       nuevosIntentos[indice] = nuevoIntento;
-  
+
       setIntentos(nuevosIntentos);
-  
+
       // Actualizamos los colores de las letras en el teclado
       const letrasUsadasActuales = { ...letrasUsadas };
       nuevoIntento.forEach((item) => {
         letrasUsadasActuales[item.letra] = item.color;
       });
       setLetrasUsadas(letrasUsadasActuales);
-  
+
       if (nuevoIntento.every((item) => item.color === "verde")) {
         setGanador(true);
         const tiempoActual = (Date.now() - tiempoInicio) / 1000;
         // bonificaciones por tiempo
         if (tiempoTranscurrido <= 15) {
-          setPuntos(prevPuntos => prevPuntos + 60); 
+          setPuntos((prevPuntos) => prevPuntos + 60);
         } else if (tiempoTranscurrido <= 30) {
-          setPuntos(prevPuntos => prevPuntos + 40); 
+          setPuntos((prevPuntos) => prevPuntos + 40);
         } else if (tiempoTranscurrido <= 60) {
-          setPuntos(prevPuntos => prevPuntos + 20); 
+          setPuntos((prevPuntos) => prevPuntos + 20);
         }
         setShowModalWin(true);
       } else if (indice < 5) {
@@ -195,7 +203,7 @@ const Juego = () => {
       } else {
         setShowModalLose(true);
       }
-  
+
       // Actualizamos el tablero de resumen con los emojis
       const tableroEmoji = nuevoIntento.map((item) => {
         if (item.color === "verde") {
@@ -206,13 +214,12 @@ const Juego = () => {
           return "⬜️";
         }
       });
-  
+
       let nuevoTableroResumen = [...tableroResumen];
       nuevoTableroResumen[indice] = tableroEmoji;
       setTableroResumen(nuevoTableroResumen);
     }
   };
-  
 
   useEffect(() => {
     if (tiempoInicio) {
@@ -335,7 +342,11 @@ const Juego = () => {
                   onClick={() => {
                     setMostrarPista(!mostrarPista);
                     setPistaUsada(true);
-                    setPuntos(prevPuntos => prevPuntos - 20);
+                    // Sólo aplica la penalización si no se ha aplicado antes
+                    if (!penalizacionPorPistaAplicada) {
+                      setPuntos((prevPuntos) => prevPuntos - 20);
+                      setPenalizacionPorPistaAplicada(true); // Actualizamos la variable para indicar que ya se aplicó la penalización
+                    }
                   }}
                 >
                   {mostrarPista ? "Ocultar pista" : "🔍 Ver pista"}
