@@ -7,6 +7,11 @@ import datetime
 from .serializers import WordSerializer, CountrySerializer
 
 # Create your views here.
+class allWord(viewsets.ModelViewSet):
+    queryset = Word.objects.all()
+    permission_classes = [permissions.AllowAny]
+    serializer_class = WordSerializer
+
 class getWords(viewsets.ModelViewSet):
     queryset = None
     created = None
