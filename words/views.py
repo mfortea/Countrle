@@ -17,14 +17,14 @@ class getWords(viewsets.ModelViewSet):
     created = None
     if(queryset == None or created != datetime.date.today()):
         random_idx = random.randint(0, Word.objects.count() - 1)
-        queryset = Word.objects.filter(id=random_idx)
+        queryset = Word.objects.all.get(random_idx)
         created = datetime.date.today()
     permission_classes = [permissions.AllowAny]
     serializer_class = WordSerializer
 
 class getRandomWord(viewsets.ModelViewSet):
     random_idx = random.randint(0, Word.objects.count() - 1)
-    queryset = Word.objects.filter(id=random_idx)
+    queryset = Word.objects.filter(_id=random_idx)
     permission_classes = [permissions.AllowAny]
     serializer_class = WordSerializer
 
