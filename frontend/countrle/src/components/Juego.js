@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
-import confetti from "canvas-confetti";
 import { useNavigate } from "react-router-dom";
-import sonidoConffeti from "../assets/sonidoConffeti.mp3";
 import "./Juego.css";
 import logo from "../logo.png";
 import Modal from "./Modal";
@@ -47,6 +45,8 @@ const Juego = () => {
         tiempoTranscurrido,
         tableroResumen,
         pistaUsada,
+        ganador,
+        pista,
         puntos: puntos < 0 ? 0 : puntos, // garantiza que los puntos no sean negativos
       })
     );
@@ -105,24 +105,6 @@ const Juego = () => {
     return conteo;
   };
 
-  useEffect(() => {
-    if (ganador) {
-      confetti({
-        particleCount: 200,
-        spread: 70,
-        origin: { y: 0.6 },
-      });
-
-      // Reproduce el sonido sólo si el navegador no es Safari.
-      if (!isSafari) {
-        const audio = new Audio(sonidoConffeti);
-        audio.onloadeddata = () => {
-          audio.play();
-        };
-      }
-    }
-  }, [ganador]);
-
   const manejarClick = (letra) => {
     if (intento.indexOf("") === -1 && indice < 6) {
       if (indice === 0) {
@@ -154,14 +136,18 @@ const Juego = () => {
         let color = "";
         if (letra === palabraObjetivo[i]) {
           color = "verde";
-          puntosPorIntento += 10; // añadir puntos por letra correcta en la posición correcta
+          if (!letrasUsadas[letra] || letrasUsadas[letra] !== "verde") {
+            puntosPorIntento += 10; // añadir puntos por letra correcta en la posición correcta
+          }
         } else if (
           palabraObjetivo.includes(letra) &&
           (!conteoIntento[letra] ||
             conteoIntento[letra] <= conteoObjetivo[letra])
         ) {
           color = "amarillo";
-          puntosPorIntento += 5; // añadir puntos por letra correcta en la posición incorrecta
+          if (!letrasUsadas[letra]) {
+            puntosPorIntento += 5; // añadir puntos por letra correcta en la posición incorrecta
+          }
           conteoIntento[letra] -= 1;
         } else {
           color = "gris";
@@ -281,7 +267,7 @@ const Juego = () => {
   return (
     <div>
       <Modal show={showModalTipoJuego} handleClose={handleCloseTipoJuego}>
-        <img id="logo-acercade" src={logo} alt="Logo" />
+        <img id="logoTipoJuego" src={logo} alt="Logo" />
         <h2>Selecciona el tipo de juego:</h2>
         <button class="tipoJuego btn-primary" onClick={palabra_dia}>
           Palabra del día ☀️

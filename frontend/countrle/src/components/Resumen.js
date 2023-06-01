@@ -1,10 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
+import confetti from "canvas-confetti";
 import "./Resumen.css";
 
 const Resumen = () => {
   const juegoData = JSON.parse(localStorage.getItem("juegoData"));
   const tiempo = parseInt(juegoData.tiempoTranscurrido);
   const pistaUsada = juegoData.pistaUsada;
+
+  useEffect(() => {
+    if (juegoData.ganador) {
+      confetti({
+        particleCount: 100,
+        spread: 150,
+        origin: { x: 0.5 },
+      });
+    }
+  },);
+
   return (
     <div>
       <br></br>
@@ -13,6 +25,8 @@ const Resumen = () => {
           <h1>📝 Resumen de la partida</h1>
           <br></br>
           <h2>Juego "{juegoData.tipoJuego}"</h2>
+          <h3>{juegoData.ganador ? "¡Enhorabuena! 🎉": "Sigue intentándolo 💪"}</h3>
+          <br></br>
           <h2>{juegoData.palabraObjetivo}</h2>
           <div>
             {juegoData.tableroResumen.map((fila, index) => (
@@ -20,8 +34,9 @@ const Resumen = () => {
             ))}
           </div>
           <br></br>
-          <h3>Has conseguido {juegoData.puntos} puntos en esta partida</h3>
-          <h3>{pistaUsada ? "Has usado la pista 😒" : "No has usado pistas 🎉"}</h3>
+          <br></br>
+          <h3>Has conseguido <strong class="puntos">{juegoData.puntos} puntos </strong> en esta partida</h3>
+          <h3><i>{pistaUsada ? "Has usado la pista 😒" : "No has usado pistas 👍 "}</i></h3>
           <br></br>
           <div className="tiempo">
             {tiempo < 60
