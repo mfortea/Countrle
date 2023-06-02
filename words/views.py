@@ -14,7 +14,11 @@ class allWord(viewsets.ModelViewSet):
 
 class getWords(viewsets.ModelViewSet):    
     def get_queryset(self):
-        if (not created):
+        with open('words.txt', 'r') as f:
+            for line in f:
+                created = line.strip()
+                created = datetime.datetime.strptime(created, '%Y-%m-%d').date()
+        if (created!=datetime.date.today() or not created):
             random_idx = random.randint(0, Word.objects.count() - 1)
             queryset = Word.objects.filter(id=random_idx)
             created = datetime.date.today()
