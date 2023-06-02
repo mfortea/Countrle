@@ -27,6 +27,10 @@
     font-size: 60px;
 }
 
+.cargando {
+    width: 150px;
+}
+
 
 .modal-main {
     color: rgb(0, 0, 0);

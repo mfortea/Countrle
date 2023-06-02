@@ -14,12 +14,13 @@ const Juego = () => {
   const [pistaUsada, setPistaUsada] = useState(false);
   const [puntos, setPuntos] = useState(0);
   const [tipoJuego, setTipoJuego] = useState("");
-  const palabraObjetivo = palabra.toUpperCase();
+  const [palabraObjetivo, setPalaraObjetivo] = useState("");
   const [intento, setIntento] = useState(Array(5).fill(""));
   const [intentos, setIntentos] = useState(
     Array(6).fill(Array(5).fill({ letra: "", color: "" }))
   );
   const api_url = process.env.REACT_APP_API_URL;
+  const clave = process.env.REACT_APP_SECRET_KEY;
   const [indice, setIndice] = useState(0);
   const [ganador, setGanador] = useState(false);
   const [letrasUsadas, setLetrasUsadas] = useState({});
@@ -94,16 +95,17 @@ const Juego = () => {
     setShowModalTipoJuego(false);
     setShowModalCargando(true);
     try {
-      const response = await fetch(api_url + "words");
+      const response = await fetch(api_url + "words/?format=json");
       console.log(response);
       if (!response.ok) {
         setModalError(true);
       }
       const data = await response.json();
-      setPalabra(data.Word);
-      setPista(data.Clue);
-      setTipoJuego("Palabra del Día");
-      setBandera(data.Country);
+      setPalabra(data[0].Word);
+      setPalaraObjetivo(data[0].Word.toUpperCase());
+      setPista(data[0].Clue);
+      setTipoJuego("Palabra del Dia");
+      setBandera(data[0].Country);
       setTiempoInicio(Date.now());
     } catch (error) {
       console.error("Fetch failed:", error);
@@ -112,22 +114,22 @@ const Juego = () => {
       setShowModalCargando(false);
     }
   };
-
-
+  
   const palabra_aleatoria = async () => {
     setShowModalTipoJuego(false);
     setShowModalCargando(true);
     try {
-      const response = await fetch(api_url + "random");
+      const response = await fetch(api_url + "random/?format=json");
       console.log(response);
       if (!response.ok) {
         setModalError(true);
       }
       const data = await response.json();
-      setPalabra(data.Word);
-      setPista(data.Clue);
+      setPalabra(data[0].Word);
+      setPalaraObjetivo(data[0].Word.toUpperCase());
+      setPista(data[0].Clue);
       setTipoJuego("Palabra Aleatoria");
-      setBandera(data.Country);
+      setBandera(data[0].Country);
       setTiempoInicio(Date.now());
     } catch (error) {
       console.error("Fetch failed:", error);
@@ -136,6 +138,7 @@ const Juego = () => {
       setShowModalCargando(false);
     }
   };
+
 
   const contarLetras = (palabra) => {
     const conteo = {};
@@ -311,7 +314,9 @@ const Juego = () => {
   return (
     <div>
       <Modal show={showModalCargando}>
-        <img src={cargando}></img>
+        <img className="cargando" src={cargando}></img>
+        <br></br>
+        <br></br>
       </Modal>
       <Modal show={showModalError} handleClose={handleCloseError}>
         <h2 className="errorApi">Error</h2>
