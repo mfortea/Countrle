@@ -57,7 +57,7 @@ const Resumen = () => {
                 } y ${(tiempo % 60).toFixed(0).padStart(2, "0")} segundos`}
           </div>
           <br></br>
-          <br></br>
+          <div className="contenedor_ranking">
           <a class="boton-nuevaP" href="/juego">
             {" "}
             <i class="fa-solid fa-gamepad"></i>
@@ -68,8 +68,7 @@ const Resumen = () => {
             <i class="fa-solid fa-trophy"></i>
             &nbsp;Ver el ranking
           </a>
-          <br></br>
-          <br></br>
+          </div>
         </div>
       </div>
     </div>
