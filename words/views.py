@@ -5,7 +5,6 @@ from rest_framework.response import Response
 import random
 import datetime
 from .serializers import WordSerializer, CountrySerializer
-import os
 
 # Create your views here.
 class allWord(viewsets.ModelViewSet):
@@ -15,10 +14,10 @@ class allWord(viewsets.ModelViewSet):
 
 class getWords(viewsets.ModelViewSet):    
     def get_queryset(self):
-        if (self.created != datetime.date.today()):
+        if (not created):
             random_idx = random.randint(0, Word.objects.count() - 1)
             queryset = Word.objects.filter(id=random_idx)
-            self.created = datetime.date.today()
+            created = datetime.date.today()
             return queryset
     permission_classes = [permissions.AllowAny]
     serializer_class = WordSerializer
@@ -46,14 +45,13 @@ class getRandomWord(viewsets.ModelViewSet):
 
 class getCountry(viewsets.ModelViewSet):
     def get_queryset(self):
-        post= self.get_object(id)
         queryset = Country.objects.filter()
         return queryset
     permission_classes = [permissions.AllowAny]
     serializer_class = CountrySerializer
 
-    def get(self, request, format=None):
-        post= self.get_object(request.data.get('id'))
-        serializer = CountrySerializer(post)
-        return Response(serializer.data)
+    def get(self):
+        post= self.request.id
+        queryset = Country.objects.filter(id = post)
+        return Response(queryset)
 

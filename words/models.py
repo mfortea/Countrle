@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 class Country(models.Model):
@@ -9,8 +10,7 @@ class Country(models.Model):
 class Word(models.Model):
     id = models.IntegerField(primary_key=True)
     Word = models.CharField(max_length=5)
-    Country = models.ForeignKey(Country, on_delete=models.CASCADE)
+    Country = models.CharField(default='nulo', max_length=15)
     Clue = models.CharField(max_length=400)
-
 
     

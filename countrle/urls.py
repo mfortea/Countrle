@@ -16,17 +16,21 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from words.views import getWords, getCountry, getRandomWord, allWord
-from usermanager.views import getUsers
+from usermanager.views import getUsers, getBest
 from rest_framework import routers
+
 
 router = routers.DefaultRouter()
 
-#router.register('admin', admin.site.urls, 'admin')
-router.register('api/words', getWords, 'words')
-router.register('api/random', getRandomWord, 'random')
-router.register('api/country', getCountry, 'country')
-router.register('api/country/<str:id>', getCountry, 'countrybyId')
-router.register('api/users', getUsers, 'user')
-router.register('api/allwords', allWord, 'allwords')
+router.register('words', getWords, basename='words')
+router.register('random', getRandomWord, basename='random')
+router.register('country', getCountry,  basename='country')
+router.register('users', getUsers, basename='users')
+router.register('best', getBest, basename='best')
+router.register('allwords', allWord, basename='allwords')
 
-urlpatterns = router.urls
+urlpatterns = [
+    path('admin/', admin.site.urls),  # Ruta del sitio de administración
+    path('api/', include(router.urls)),  # Rutas del API
+]
+
