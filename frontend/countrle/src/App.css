@@ -31,6 +31,11 @@ body, html {
     cursor: pointer;
 }
 
+#botonUsuario{
+   width: 20px !important;
+}
+
+
 @media (min-width: 992px) {
     .navbar-nav .nav-item {
         width: 100px;
@@ -108,6 +113,11 @@ body {
 
 .navbar-toggler {
     outline: none !important;
+}
+
+.dropdown-item:hover{
+    background-color: #1875ff;
+    color: white;
 }
 
 
@@ -202,6 +212,19 @@ body {
         border: none;
     }
 
+    .dropdown-menu{
+        color: white !important;
+        background-color: #242424;
+    }
+    
+    .dropdown-item{
+        color: white !important;
+    }
+    
+    .dropdown-item:hover{
+        background-color: #1875ff;
+    }
+
 }
 
 @media (max-width: 370px) {
@@ -228,3 +251,13 @@ body {
     }
 
 }
+
+@media (min-width: 992px) {
+
+    .dropdown{
+        margin-bottom: 13px !important;
+        width: 7em !important;
+    }
+
+}
+

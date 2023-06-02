@@ -15,7 +15,7 @@ const Resumen = () => {
         origin: { x: 0.5 },
       });
     }
-  },);
+  });
 
   return (
     <div>
@@ -25,7 +25,9 @@ const Resumen = () => {
           <h1>📝 Resumen de la partida</h1>
           <br></br>
           <h2>Juego "{juegoData.tipoJuego}"</h2>
-          <h3>{juegoData.ganador ? "¡Enhorabuena! 🎉": "Sigue intentándolo 💪"}</h3>
+          <h3>
+            {juegoData.ganador ? "¡Enhorabuena! 🎉" : "Sigue intentándolo 💪"}
+          </h3>
           <br></br>
           <h2>{juegoData.palabraObjetivo}</h2>
           <div>
@@ -35,24 +37,39 @@ const Resumen = () => {
           </div>
           <br></br>
           <br></br>
-          <h3>Has conseguido <strong class="puntos">{juegoData.puntos} puntos </strong> en esta partida</h3>
-          <h3><i>{pistaUsada ? "Has usado la pista 😒" : "No has usado pistas 👍 "}</i></h3>
+          <h3>
+            Has conseguido{" "}
+            <strong class="puntos">{juegoData.puntos} puntos </strong> en esta
+            partida
+          </h3>
+          <h3>
+            <i>
+              {pistaUsada ? "Has usado la pista 😒" : "No has usado pistas 👍 "}
+            </i>
+          </h3>
           <br></br>
           <div className="tiempo">
+          <i class="fa-sharp fa-solid fa-clock"></i>&nbsp;  
             {tiempo < 60
-              ? `Tiempo empleado: ${tiempo.toFixed(
-                  0
-                )} segundos`
-              : `Tiempo empleado: ${Math.floor(tiempo / 60)} ${
-                  Math.floor(tiempo / 60) === 1
-                    ? "minuto"
-                    : "minutos"
-                } y ${(tiempo % 60)
-                  .toFixed(0)
-                  .padStart(2, "0")} segundos`}
+              ? ` Tiempo empleado: ${tiempo.toFixed(0)} segundos`
+              : ` Tiempo empleado: ${Math.floor(tiempo / 60)} ${
+                  Math.floor(tiempo / 60) === 1 ? "minuto" : "minutos"
+                } y ${(tiempo % 60).toFixed(0).padStart(2, "0")} segundos`}
           </div>
-          <br></br><br></br>
-          <a class="boton-ranking" href="/ranking">🏆 Ver el ranking</a>
+          <br></br>
+          <br></br>
+          <a class="boton-nuevaP" href="/juego">
+            {" "}
+            <i class="fa-solid fa-gamepad"></i>
+            &nbsp;Nueva partida
+          </a>
+          <a class="boton-ranking" href="/ranking">
+            {" "}
+            <i class="fa-solid fa-trophy"></i>
+            &nbsp;Ver el ranking
+          </a>
+          <br></br>
+          <br></br>
         </div>
       </div>
     </div>

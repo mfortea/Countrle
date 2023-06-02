@@ -15,13 +15,13 @@ const Login = () => {
             <img id="logo_login" src={logo_login} alt="Logo Countrle Login" />
              <br></br><br></br>
              <div class="form-outline mb-4">
-              <label class="form-label" for="form2Example1">Correo electrónico</label>
+              <label class="form-label" for="form2Example1"><i class="fa-solid fa-envelope"></i> Correo electrónico</label>
                 <input type="email" id="form2Example1" class="form-control" />
               </div>
 
 
               <div class="form-outline mb-4">
-              <label class="form-label" for="form2Example2">Contraseña</label>
+              <label class="form-label" for="form2Example2"><i class="fa-solid fa-lock"></i> Contraseña</label>
                 <input type="password" id="form2Example2" class="form-control" />
               </div>
 
@@ -37,7 +37,7 @@ const Login = () => {
               </div>
 
 
-              <button type="button" class="btn btn-primary btn-block mb-4">Iniciar Sesión</button>
+              <button type="button" class="btn btn-primary btn-block mb-4"><i class="fa-solid fa-right-to-bracket"></i>&nbsp; Iniciar Sesión</button>
 
 
               <div class="text-center">

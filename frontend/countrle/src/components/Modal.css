@@ -28,9 +28,22 @@
 }
 
 .cargando {
-    width: 150px;
+    width: 220px;
 }
 
+#cerrar {
+    color: white;
+    width: 180px;
+    background-color: rgba(164, 1, 1, 0.713);
+}
+
+#cerrar:hover {
+    background-color: rgba(215, 2, 2, 0.713);
+}
+
+#cerrar:active {
+    background-color: rgba(100, 0, 0, 0.713);
+}
 
 .modal-main {
     color: rgb(0, 0, 0);
