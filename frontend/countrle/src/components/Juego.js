@@ -384,7 +384,6 @@ const Juego = () => {
                 </button>
               ))}
             </div>
-            {indice === 5 && (
               <div>
                 <br></br>
                 <button
@@ -403,7 +402,7 @@ const Juego = () => {
                   🔍 Ver pista
                 </button>
               </div>
-            )}
+
 
             <div className="botones">
               <button id="bComprobar" onClick={comprobar}>
