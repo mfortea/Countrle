@@ -25,6 +25,7 @@ router = routers.DefaultRouter()
 router.register('api/words', getWords, 'words')
 router.register('api/random', getRandomWord, 'random')
 router.register('api/country', getCountry, 'country')
+router.register('api/country/<str:id>', getCountry, 'countrybyId')
 router.register('api/users', getUsers, 'user')
 router.register('api/allwords', allWord, 'allwords')
 

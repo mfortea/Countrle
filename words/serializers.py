@@ -1,6 +1,7 @@
 from rest_framework.serializers import ModelSerializer
 from .models import Word, Country
 
+
 class WordSerializer(ModelSerializer):
     class Meta:
         model = Word
