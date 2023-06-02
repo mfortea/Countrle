@@ -1,27 +1,38 @@
 from django.shortcuts import render
-from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.models import User
-from django.http import HttpResponse
+from .models import Word, Country
+from rest_framework import viewsets, permissions
+from rest_framework.decorators import api_view
+import random
+from random import choice
+import datetime
+from .serializers import WordSerializer, CountrySerializer
+from bson.objectid import ObjectId
+
 # Create your views here.
-def signup(request):
+class allWord(viewsets.ModelViewSet):
+    queryset = Word.objects.values_list('_id', flat=True).order_by('_id')
+    randmon_id = choice(queryset)
+    queryset = Word.objects.filter(_id=ObjectId(randmon_id))
+    permission_classes = [permissions.AllowAny]
+    serializer_class = WordSerializer
 
-    if request.method == 'GET':
-        return render(request, 'signup.html',{
-        'form': UserCreationForm
-         })
+class getWords(viewsets.ModelViewSet):
+    queryset = None
+    created = None
+    if(queryset == None or created != datetime.date.today()):
+        random_idx = random.randint(0, Word.objects.count() - 1)
+        #queryset = Word.objects.filter(_id= pick_random_object())
+        created = datetime.date.today()
+    permission_classes = [permissions.AllowAny]
+    serializer_class = WordSerializer
 
-    else:
-        if (request.POST['password1'] == request.POST['password2']):
-            #register user
-            try:
-                user = User.objects.create_user(username=request.POST['username'], password=request.POST['password1'])
-                user.save()
-                return HttpResponse('Usuario creado correctamente')
-            except:
-                return HttpResponse('Error en la base de datos')
-        else:
-            return HttpResponse('Las contraseñas no coinciden')
-    
+class getRandomWord(viewsets.ModelViewSet):
+    random_idx = random.randint(0, Word.objects.count() - 1)
+    queryset = Word.objects.filter(_id=random_idx)
+    permission_classes = [permissions.AllowAny]
+    serializer_class = WordSerializer
 
-def home(request):
-    return render(request, 'home.html')
+class getCountry(viewsets.ModelViewSet):
+    queryset = Country.objects.all()
+    permission_classes = [permissions.AllowAny]
+    serializer_class = CountrySerializer
