@@ -5,10 +5,10 @@
 .usuario-actual {
     padding: 20px;
     border: solid;
-    border-width: 2px;
+    border-width: 3px;
     border-color: rgb(8, 164, 255);
     border-radius: 10px;
-    background-color: #cccccc;
+    background-color: #dcdcdc;
     margin-bottom: 20px;
 }
 
@@ -16,7 +16,7 @@
     border: 1px unset #ddd;
     padding: 20px;
     border-radius: 10px;
-    background-color: #cccccc;
+    background-color: #dcdcdc;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -26,24 +26,23 @@
 .fila_ranking {
     border: solid;
     border-width: 2px;
-    color: white;
+    color: black;
     text-align: left;
-    border-color: #7e7e7e;
-    background-color: #7e7e7e;
+    border-color:  #d0d0d0;
+    background-color: #d0d0d0;
     border-radius: 15px;
-    margin: 10px;
-    padding: 10px;
+    margin: 8px;
     transition: background-color 0.3s;
     display: flex;
     align-items: center;
-    width: 320px;
+    width: 300px;
 }
 
 .fila_ranking:hover {
     border: solid;
     border-width: 2px;
-    border-color: white;
-    background-color: rgb(69, 69, 69);
+    border-color:rgb(187, 187, 187);
+    background-color: rgb(187, 187, 187);
     transition: background-color 0.3s;
 }
 
@@ -114,10 +113,15 @@
     }
 
     .fila_ranking {
-        border-color: #363636;
-        background-color: #363636;
+        border-color:#373737;
+        background-color: #373737;
+        color: white;
     }
     
+    .fila_ranking:hover{
+        border-color: #525252;
+        background-color: #525252;
+    }
 }
 
 
