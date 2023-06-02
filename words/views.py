@@ -6,6 +6,8 @@ import random
 import datetime
 from .serializers import WordSerializer, CountrySerializer
 
+created = None
+
 # Create your views here.
 class allWord(viewsets.ModelViewSet):
     queryset = Word.objects.all()
@@ -13,9 +15,7 @@ class allWord(viewsets.ModelViewSet):
     serializer_class = WordSerializer
 
 class getWords(viewsets.ModelViewSet):
-    queryset = None
-    created = None
-    if (queryset == None or created != datetime.date.today()):
+    if (created != datetime.date.today()):
         random_idx = random.randint(0, Word.objects.count() - 1)
         queryset = Word.objects.filter(id=random_idx)
         created = datetime.date.today()
