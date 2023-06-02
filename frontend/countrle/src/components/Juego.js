@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Juego.css";
 import logo from "../logo.png";
+import cargando from "../assets/cargando.gif";
 import Modal from "./Modal";
 import Resumen from "./Resumen";
 
@@ -18,6 +19,7 @@ const Juego = () => {
   const [intentos, setIntentos] = useState(
     Array(6).fill(Array(5).fill({ letra: "", color: "" }))
   );
+  const api_url = process.env.REACT_APP_API_URL;
   const [indice, setIndice] = useState(0);
   const [ganador, setGanador] = useState(false);
   const [letrasUsadas, setLetrasUsadas] = useState({});
@@ -30,6 +32,9 @@ const Juego = () => {
   const [showModalLose, setShowModalLose] = useState(false);
   const [showModalWin, setShowModalWin] = useState(false);
   const [showModalTipoJuego, setShowModalTipoJuego] = useState(true);
+  const [showModalPista, setModalPista] = useState(false);
+  const [showModalError, setModalError] = useState(false);
+  const [showModalCargando, setShowModalCargando] = useState(false);
   const [pista, setPista] = useState("");
   const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
   const [tableroResumen, setTableroResumen] = useState(
@@ -75,22 +80,61 @@ const Juego = () => {
     navigate("/");
   };
 
-  const palabra_dia = () => {
-    setPalabra("mango");
-    setPista("Es una fruta tropical");
-    setTipoJuego("Palabra del día");
-    setBandera("&#127466;&#127480;");
-    setShowModalTipoJuego(false);
-    setTiempoInicio(Date.now());
+  const handleClosePista = () => {
+    setModalPista(false);
   };
 
-  const palabra_aleatoria = () => {
-    setPalabra("tigre");
-    setPista("Es un gran felino");
-    setTipoJuego("Palabra Aleatoria");
-    setBandera("&#127466;&#127480;");
+  const handleCloseError = () => {
+    setModalPista(false);
+    setModalError(false);
+    navigate("/");
+  };
+
+  const palabra_dia = async () => {
     setShowModalTipoJuego(false);
-    setTiempoInicio(Date.now());
+    setShowModalCargando(true);
+    try {
+      const response = await fetch(api_url + "words");
+      console.log(response);
+      if (!response.ok) {
+        setModalError(true);
+      }
+      const data = await response.json();
+      setPalabra(data.Word);
+      setPista(data.Clue);
+      setTipoJuego("Palabra del Día");
+      setBandera(data.Country);
+      setTiempoInicio(Date.now());
+    } catch (error) {
+      console.error("Fetch failed:", error);
+      setModalError(true);
+    } finally {
+      setShowModalCargando(false);
+    }
+  };
+
+
+  const palabra_aleatoria = async () => {
+    setShowModalTipoJuego(false);
+    setShowModalCargando(true);
+    try {
+      const response = await fetch(api_url + "random");
+      console.log(response);
+      if (!response.ok) {
+        setModalError(true);
+      }
+      const data = await response.json();
+      setPalabra(data.Word);
+      setPista(data.Clue);
+      setTipoJuego("Palabra Aleatoria");
+      setBandera(data.Country);
+      setTiempoInicio(Date.now());
+    } catch (error) {
+      console.error("Fetch failed:", error);
+      setModalError(true);
+    } finally {
+      setShowModalCargando(false);
+    }
   };
 
   const contarLetras = (palabra) => {
@@ -266,13 +310,28 @@ const Juego = () => {
 
   return (
     <div>
+      <Modal show={showModalCargando}>
+        <img src={cargando}></img>
+      </Modal>
+      <Modal show={showModalError} handleClose={handleCloseError}>
+        <h2 className="errorApi">Error</h2>
+        <h2>🫣 Ups!</h2>
+        <h3>No hemos podido recuperar la palabra</h3>
+        <p className="detalles">
+          Detalles: No se ha podido contactar con la API
+        </p>
+      </Modal>
+      <Modal show={showModalPista} handleClose={handleClosePista}>
+        <h2>👀 Pista</h2>
+        <p className="textoPista">{pista}</p>
+      </Modal>
       <Modal show={showModalTipoJuego} handleClose={handleCloseTipoJuego}>
         <img id="logoTipoJuego" src={logo} alt="Logo" />
         <h2>Selecciona el tipo de juego:</h2>
-        <button class="tipoJuego btn-primary" onClick={palabra_dia}>
+        <button className="tipoJuego btn-primary" onClick={palabra_dia}>
           Palabra del día ☀️
         </button>
-        <button class="tipoJuego btn-primary" onClick={palabra_aleatoria}>
+        <button className="tipoJuego btn-primary" onClick={palabra_aleatoria}>
           Palabra aleatoria 🎲
         </button>
         <br></br> <br></br>
@@ -288,8 +347,8 @@ const Juego = () => {
         <p>¡Has acertado! ¡Felicidades!</p>
       </Modal>
       <br></br>
-      <div class="container animacion-carga">
-        <div class="jumbotron">
+      <div className="container animacion-carga">
+        <div className="jumbotron">
           <div className="juego">
             <h2>{tipoJuego}</h2>
             <p id="bandera" dangerouslySetInnerHTML={{ __html: bandera }}></p>
@@ -324,8 +383,9 @@ const Juego = () => {
               <div>
                 <br></br>
                 <button
-                  class="bPista"
+                  className="bPista"
                   onClick={() => {
+                    setModalPista(true);
                     setMostrarPista(!mostrarPista);
                     setPistaUsada(true);
                     // Sólo aplica la penalización si no se ha aplicado antes
@@ -335,10 +395,8 @@ const Juego = () => {
                     }
                   }}
                 >
-                  {mostrarPista ? "Ocultar pista" : "🔍 Ver pista"}
+                  🔍 Ver pista
                 </button>
-
-                {mostrarPista && <p id="textoPista">Pista: {pista}</p>}
               </div>
             )}
 
@@ -350,7 +408,7 @@ const Juego = () => {
                 Borrar 🗑️
               </button>
             </div>
-            <div class="tiempo">
+            <div className="tiempo">
               🕒 Tiempo transcurrido: {Math.floor(tiempoTranscurrido / 60)}:
               {(tiempoTranscurrido % 60).toFixed(0).padStart(2, "0")}
             </div>
