@@ -10,7 +10,7 @@ function Error404() {
             <div className="container animacion-carga">
                 <div className="jumbotron">
                     <div>
-                        <p className="error_emoji">😬</p>
+                        <h1 className="error_emoji">😬</h1>
                         <h1 className="error">Error 404</h1>
                         <h3>¡Ups! No encontramos la página que estás buscando</h3>
                         <a className="btn btn-large btn-primary" href="/">Volver a Inicio</a>

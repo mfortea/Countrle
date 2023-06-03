@@ -14,7 +14,7 @@ const Inicio = () => {
           <h1>¡Bienvenido a Countrle!</h1>
           <br></br>
           <p className="lead">Countrle es una emocionante juego en la que podrás poner a prueba tus conocimientos sobre países y adivinar palabras relacionadas con ellos. ¿Estás listo para desafiar tu mente y ampliar tus horizontes geográficos? </p>
-          <a className="btn btn-large btn-primary" href="/login">¡Jugar Ahora!</a>
+          <a className="btn btn-large btn-primary" href="/juego">¡Jugar Ahora!</a>
           <br></br>
           <br></br>
           <div className="container marketing">

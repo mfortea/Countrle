@@ -1,6 +1,16 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import "./Ajustes.css";
+
 function Ajustes() {
+
+  const navigate = useNavigate();
+  const usuarioActual = localStorage.getItem('usuarioActual');
+
+  const handleLogout = () => {
+    navigate('/logout');
+  };
+
   return (
     <div>
       <br></br>
@@ -8,14 +18,17 @@ function Ajustes() {
         <div className="jumbotron">
           <div>
             <h1>Ajustes</h1>
-            <h2>Hola manolo69</h2>
-            <h4>Tu puntuación es XX puntos</h4>
+            <h2>Hola {usuarioActual}</h2>
+            <br></br>
             <button className="tipoJuego bAjustes btn-primary">
               <i className="fas fa-lock"></i>
               &nbsp; Cambiar contraseña
             </button>
             <br></br>
-            <button className="tipoJuego bAjustes btn-primary">
+            <button 
+              className="tipoJuego bAjustes btn-primary" 
+              onClick={handleLogout}
+            >
               <i className="fas fa-sign-out-alt"></i>
               &nbsp; Cerrar sesión
             </button>
