@@ -25,7 +25,6 @@ router = routers.DefaultRouter()
 router.register('words', getWords, basename='words')
 router.register('random', getRandomWord, basename='random')
 router.register('country', getCountry,  basename='country')
-router.register('users', getUsers, basename='users')
 router.register('best', getBest, basename='best')
 
 urlpatterns = [
@@ -33,5 +32,6 @@ urlpatterns = [
     path('api/', include(router.urls)),  # Rutas del API
     path('api/word', allWord, name='allWord'),
     path('api/user', login, name='login'),
+    path('api/users', getUsers, name='getUsers'),
 ]
 
