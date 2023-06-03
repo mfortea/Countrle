@@ -34,10 +34,6 @@ const Login = () => {
     e.preventDefault();
 
     const authString = `${api_user}:${api_pass}`;
-    const headers = {
-      Authorization: `Basic ${btoa(authString)}`,
-      "Content-Type": "application/json",
-    };
 
     try {
       setShowModalCargando(true);
@@ -46,8 +42,7 @@ const Login = () => {
         {
           username,
           password,
-        },
-        { headers }
+        }
       );
 
       if (response.status === 200) {
