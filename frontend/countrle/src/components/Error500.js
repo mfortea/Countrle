@@ -8,11 +8,11 @@ function Error500() {
 
         <div>
             <br></br>
-            <div class="container animacion-carga">
-                <div class="jumbotron">
+            <div className="container animacion-carga">
+                <div className="jumbotron">
                     <div>
-                        <p class="error_emoji">😵</p>
-                        <h1 class="error">Error 500</h1>
+                        <p className="error_emoji">😵</p>
+                        <h1 className="error">Error 500</h1>
                         <h3>¡Ups! Parece que nuestro servidor está teniendo problemas. Inténtalo más tarde</h3>
                         <a className="btn btn-large btn-primary" href="/">Volver a Inicio</a>
                     </div>

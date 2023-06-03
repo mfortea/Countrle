@@ -8,6 +8,39 @@
 }
 
 input {
-  max-width:350px;
+  max-width: 350px;
   margin: 0 auto;
+}
+
+
+.alert-error {
+  color: white;
+  background-color: rgb(176, 0, 0)!important;
+  border: unset !important;
+  text-align: center;
+  max-width: 350px !important;
+  margin: 0 auto !important;
+}
+
+.alert-ok {
+  color: white;
+  background-color: rgb(20, 145, 49)!important;
+  border: unset !important;
+  text-align: center;
+  max-width: 350px !important;
+  margin: 0 auto !important;
+}
+
+#registrarse:disabled {
+  background-color: rgb(130, 134, 151);
+  box-shadow: none;
+  border: unset;
+}
+
+@media (prefers-color-scheme: dark) {
+
+  .alert-error {
+    background-color: rgb(88, 0, 0) !important;
+  }
+
 }

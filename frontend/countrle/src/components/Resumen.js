@@ -39,7 +39,7 @@ const Resumen = () => {
           <br></br>
           <h3>
             Has conseguido{" "}
-            <strong class="puntos">{juegoData.puntos} puntos </strong> en esta
+            <strong className="puntos">{juegoData.puntos} puntos </strong> en esta
             partida
           </h3>
           <h3>
@@ -49,7 +49,7 @@ const Resumen = () => {
           </h3>
           <br></br>
           <div className="tiempo">
-          <i class="fa-sharp fa-solid fa-clock"></i>&nbsp;  
+          <i className="fa-sharp fa-solid fa-clock"></i>&nbsp;  
             {tiempo < 60
               ? ` Tiempo empleado: ${tiempo.toFixed(0)} segundos`
               : ` Tiempo empleado: ${Math.floor(tiempo / 60)} ${
@@ -58,14 +58,14 @@ const Resumen = () => {
           </div>
           <br></br>
           <div className="contenedor_ranking">
-          <a class="boton-nuevaP" href="/juego">
+          <a className="boton-nuevaP" href="/juego">
             {" "}
-            <i class="fa-solid fa-gamepad"></i>
+            <i className="fa-solid fa-gamepad"></i>
             &nbsp;Nueva partida
           </a>
-          <a class="boton-ranking" href="/ranking">
+          <a className="boton-ranking" href="/ranking">
             {" "}
-            <i class="fa-solid fa-trophy"></i>
+            <i className="fa-solid fa-trophy"></i>
             &nbsp;Ver el ranking
           </a>
           </div>

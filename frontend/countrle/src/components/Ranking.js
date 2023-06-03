@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useContext, useRef } from "react";
 import "./Ranking.css";
+import { AuthContext } from "../components/AuthContext";
 
 const Ranking = () => {
-  // Aquí irán tus datos reales. Estos son solo de prueba.
+  const { auth } = useContext(AuthContext);
   const usuarioActual = { nombre: "Usuario6", puntuacion: 150, posicion: 6 };
   const ranking = [
     { nombre: "Usuario1", puntuacion: 1000 },
@@ -30,22 +31,41 @@ const Ranking = () => {
   return (
     <div>
       <br></br>
-      <div class="container animacion-carga">
-        <div class="jumbotron">
+      <div className="container animacion-carga">
+        <div className="jumbotron">
           <div className="estadisticas">
-            <div className="usuario-actual">
-              <h1>{usuarioActual.nombre}</h1>
-              <h3>Puntuación: <strong class="puntos">{usuarioActual.puntuacion} puntos</strong></h3>
-              <h4>Estás el {usuarioActual.posicion}º en la tabla</h4>
-            </div>
+            {auth && (
+              <>
+                <div className="usuario-actual">
+                  <h1>{usuarioActual.nombre}</h1>
+                  <h3>
+                    Puntuación:{" "}
+                    <strong className="puntos">
+                      {usuarioActual.puntuacion} puntos
+                    </strong>
+                  </h3>
+                  <h4>Estás el {usuarioActual.posicion}º en la tabla</h4>
+                </div>
+              </>
+            )}
             <div className="ranking">
-              <h2>🏆 Ranking Global</h2>
+              <br></br>
+              <h2>
+                <i className="fa-solid fa-trophy"></i>
+                &nbsp; Ranking Global
+              </h2>
+              <br></br>
               <div className="contenedor_ranking">
                 {ranking.slice(0, 10).map((usuario, index) => (
-                  <div class={`fila_ranking posicion_${index + 1}`} key={index}>
-                    <span class="posicion">{index + 1}º</span>
+                  <div
+                    className={`fila_ranking posicion_${index + 1}`}
+                    key={index}
+                  >
+                    <span className="posicion">{index + 1}º</span>
                     <div className="datos_ranking">
-                      <p>{usuario.nombre} - {usuario.puntuacion} puntos</p>
+                      <p>
+                        {usuario.nombre} - {usuario.puntuacion} puntos
+                      </p>
                     </div>
                   </div>
                 ))}

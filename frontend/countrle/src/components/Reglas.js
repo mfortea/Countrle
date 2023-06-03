@@ -6,9 +6,9 @@ const Reglas = () => {
   return (
     <div>
       <br></br>
-      <div class="container animacion-carga">
-        <div class="jumbotron reglas">
-          <h1 class="centrar">Reglas de Countrle</h1>
+      <div className="container animacion-carga">
+        <div className="jumbotron reglas">
+          <h1 className="centrar">Reglas de Countrle</h1>
           <br></br>
           <br></br>
           <h2>🎯 ¿Cuál es el objetivo?</h2>
@@ -84,22 +84,22 @@ const Reglas = () => {
             total para competir con el resto de jugadores del Ranking Global.
           </p>
           <p>Se siguen las siguientes reglas:</p>
-          <p class="lis">
+          <p className="lis">
             - Letra nueva acertada en la posición correcta: +10 puntos.
           </p>
-          <p class="lis">
+          <p className="lis">
             - Letra nueva acertada pero en la posición incorrecta: +5 puntos.
           </p>
-          <p class="lis">
+          <p className="lis">
             - Completado en menos de 1 minuto: + 20 puntos adicionales.
           </p>
-          <p class="lis">
+          <p className="lis">
             - Completado en menos de 30 segundos: + 40 puntos adicionales.
           </p>
-          <p class="lis">
+          <p className="lis">
             - Completado en menos de 15 segundos: + 60 puntos adicionales.
           </p>
-          <p class="lis">
+          <p className="lis">
             - ¡Ojo! Si solicitas la pista tendrás una penalización de 20 puntos.
           </p>
           <br></br>
@@ -114,7 +114,7 @@ const Reglas = () => {
             equipos de escritorio.
           </p>
           <img
-            class="imagen"
+            className="imagen"
             alt="Teclado, ratón y entrada táctil"
             src={metodos_entrada}
           ></img>

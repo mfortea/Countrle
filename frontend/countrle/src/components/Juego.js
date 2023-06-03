@@ -42,17 +42,25 @@ const Juego = () => {
 
   const obtenerBandera = async (id) => {
     try {
-      const response = await fetch(`https://countrle-api.onrender.com/api/country/${id}`);
+      const response = await fetch(api_url + "country/");
       if (!response.ok) {
         throw new Error('Error en la respuesta de la API');
       }
       const data = await response.json();
-      return data.Flag;
+      
+      for (let i = 0; i < data.length; i++) {
+        if (data[i].id === id) {
+          return data[i].Flag;
+        }
+      }
+      
+      return null; // ID no encontrado
     } catch (error) {
       console.error('Error al obtener la bandera:', error);
       return null;
     }
   };
+  
   
   const datosResumen = () => {
     localStorage.setItem(
@@ -65,7 +73,7 @@ const Juego = () => {
         pistaUsada,
         ganador,
         pista,
-        puntos: puntos < 0 ? 0 : puntos, // garantiza que los puntos no sean negativos
+        puntos: puntos < 0 ? 0 : puntos,
       })
     );
   };
@@ -74,7 +82,7 @@ const Juego = () => {
     setShowModalLose(false);
     navigate("/resumen");
     if (puntos < 0) {
-      setPuntos(0); // asegura que los puntos no son negativos
+      setPuntos(0); 
     }
     datosResumen();
   };
@@ -113,7 +121,6 @@ const Juego = () => {
     setShowModalCargando(true);
     try {
       const response = await fetch(api_url + "words/?format=json");
-      console.log(response);
       if (!response.ok) {
         setModalError(true);
       }
@@ -121,8 +128,12 @@ const Juego = () => {
       setPalabra(data[0].Word);
       setPalaraObjetivo(data[0].Word.toUpperCase());
       setPista(data[0].Clue);
-      setTipoJuego("Palabra del Dia");
-      setBandera(data[0].Country);
+      setTipoJuego("Palabra del Día");
+  
+      const banderaId = data[0].Country; 
+      const bandera = await obtenerBandera(banderaId); 
+      setBandera(bandera); 
+  
       setTiempoInicio(Date.now());
     } catch (error) {
       console.error("Fetch failed:", error);
@@ -146,9 +157,9 @@ const palabra_aleatoria = async () => {
     setPista(data[0].Clue);
     setTipoJuego("Palabra Aleatoria");
 
-    const banderaId = data[0].Country; // obtener el id del país
-    const bandera = await obtenerBandera(banderaId); // obtener la bandera con el id
-    setBandera(bandera); // establecer la bandera
+    const banderaId = data[0].Country; 
+    const bandera = await obtenerBandera(banderaId); 
+    setBandera(bandera); 
 
     setTiempoInicio(Date.now());
   } catch (error) {
@@ -355,10 +366,10 @@ const palabra_aleatoria = async () => {
         <img id="logoTipoJuego" src={logo} alt="Logo" />
         <h2>Selecciona el tipo de juego:</h2>
         <button className="tipoJuego btn-primary" onClick={palabra_dia}>
-          Palabra del día &nbsp; <i class="fas fa-sun"></i>
+          Palabra del día &nbsp; <i className="fas fa-sun"></i>
         </button>
         <button className="tipoJuego btn-primary" onClick={palabra_aleatoria}>
-          Palabra aleatoria &nbsp; <i class="fas fa-dice"></i>
+          Palabra aleatoria &nbsp; <i className="fas fa-dice"></i>
                           
         </button>
         <br></br> <br></br>
@@ -421,21 +432,21 @@ const palabra_aleatoria = async () => {
                     }
                   }}
                 >
-                  <i class="fa-solid fa-magnifying-glass"></i> Ver pista
+                  <i className="fa-solid fa-magnifying-glass"></i> Ver pista
                 </button>
               </div>
 
 
             <div className="botones">
               <button id="bComprobar" onClick={comprobar}>
-              <i class="fa-regular fa-circle-check"></i> &nbsp;Comprobar 
+              <i className="fa-regular fa-circle-check"></i> &nbsp;Comprobar 
               </button>
               <button id="bBorrar" onClick={borrar}>
-              <i class="fas fa-delete-left"></i>&nbsp;Borrar  
+              <i className="fas fa-delete-left"></i>&nbsp;Borrar  
               </button>
             </div>
             <div className="tiempo">
-            <i class="fa-sharp fa-solid fa-clock"></i>&nbsp; Tiempo transcurrido: {Math.floor(tiempoTranscurrido / 60)}:
+            <i className="fa-sharp fa-solid fa-clock"></i>&nbsp; Tiempo transcurrido: {Math.floor(tiempoTranscurrido / 60)}:
               {(tiempoTranscurrido % 60).toFixed(0).padStart(2, "0")}
             </div>
           </div>

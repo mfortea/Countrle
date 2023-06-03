@@ -11,23 +11,23 @@ const AcercaDe = () => {
   return (
     <div>
       <br></br>
-      <div class="container animacion-carga">
-        <div class="jumbotron">
+      <div className="container animacion-carga">
+        <div className="jumbotron">
           <img id="logo-acercade" src={logo} alt="Logo" />
           <h1>Acerca de Countrle</h1>
           <p>Countrle es un proyecto para la asignatura de Ingeniería Web del 3er Curso de Ingeniería Informática de la Universidad de Córdoba</p>
           <p>Los alumnos que han participado en este proyecto son:</p>
-          <p class="nombres">Mateo Fortea Dugo (Frontend)</p>
-          <p class="nombres">Jesús Escribano Serena (BackEnd)</p>
-          <p class="nombres">Maria Lenzano Álvarez (Diseño y Modelado)</p>
-          <p class="nombres">Antonio Díaz Pérez (Base de Datos)</p>
-          <p class="nombres">Natalia Jiménez Aranda (Pruebas)</p>
-          <p class="nombres">Juan Higuera Mohedano (Scrum Master)</p>
+          <p className="nombres">Mateo Fortea Dugo (Frontend)</p>
+          <p className="nombres">Jesús Escribano Serena (BackEnd)</p>
+          <p className="nombres">Maria Lenzano Álvarez (Diseño y Modelado)</p>
+          <p className="nombres">Antonio Díaz Pérez (Base de Datos)</p>
+          <p className="nombres">Natalia Jiménez Aranda (Pruebas)</p>
+          <p className="nombres">Juan Higuera Mohedano (Scrum Master)</p>
           <br></br>
           <h4>Tecnologías utilizadas:</h4>
-          <img class="logos" alt="Logo de React"  src={react_logo}></img>
-          <img class="logos" alt="Logo de Django" src={django_logo}></img>
-          <img class="logos" alt="Logo de MongoDB" src={mongo_logo}></img>
+          <img className="logos" alt="Logo de React"  src={react_logo}></img>
+          <img className="logos" alt="Logo de Django" src={django_logo}></img>
+          <img className="logos" alt="Logo de MongoDB" src={mongo_logo}></img>
         </div>
 
       </div>
