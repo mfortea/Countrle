@@ -34,7 +34,7 @@ const Ranking = () => {
         <div class="jumbotron">
           <div className="estadisticas">
             <div className="usuario-actual">
-              <h1>👤 {usuarioActual.nombre}</h1>
+              <h1>{usuarioActual.nombre}</h1>
               <h3>Puntuación: <strong class="puntos">{usuarioActual.puntuacion} puntos</strong></h3>
               <h4>Estás el {usuarioActual.posicion}º en la tabla</h4>
             </div>

@@ -20,7 +20,6 @@ const Juego = () => {
     Array(6).fill(Array(5).fill({ letra: "", color: "" }))
   );
   const api_url = process.env.REACT_APP_API_URL;
-  const clave = process.env.REACT_APP_SECRET_KEY;
   const [indice, setIndice] = useState(0);
   const [ganador, setGanador] = useState(false);
   const [letrasUsadas, setLetrasUsadas] = useState({});
@@ -37,11 +36,24 @@ const Juego = () => {
   const [showModalError, setModalError] = useState(false);
   const [showModalCargando, setShowModalCargando] = useState(false);
   const [pista, setPista] = useState("");
-  const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
   const [tableroResumen, setTableroResumen] = useState(
     Array(6).fill(Array(5).fill("⬜️"))
   );
 
+  const obtenerBandera = async (id) => {
+    try {
+      const response = await fetch(`https://countrle-api.onrender.com/api/country/${id}`);
+      if (!response.ok) {
+        throw new Error('Error en la respuesta de la API');
+      }
+      const data = await response.json();
+      return data.Flag;
+    } catch (error) {
+      console.error('Error al obtener la bandera:', error);
+      return null;
+    }
+  };
+  
   const datosResumen = () => {
     localStorage.setItem(
       "juegoData",
@@ -91,6 +103,11 @@ const Juego = () => {
     navigate("/");
   };
 
+  const handleCloseCargando = () => {
+    setShowModalCargando(false);
+    navigate("/");
+  };
+
   const palabra_dia = async () => {
     setShowModalTipoJuego(false);
     setShowModalCargando(true);
@@ -115,29 +132,33 @@ const Juego = () => {
     }
   };
   
-  const palabra_aleatoria = async () => {
-    setShowModalTipoJuego(false);
-    setShowModalCargando(true);
-    try {
-      const response = await fetch(api_url + "random/?format=json");
-      console.log(response);
-      if (!response.ok) {
-        setModalError(true);
-      }
-      const data = await response.json();
-      setPalabra(data[0].Word);
-      setPalaraObjetivo(data[0].Word.toUpperCase());
-      setPista(data[0].Clue);
-      setTipoJuego("Palabra Aleatoria");
-      setBandera(data[0].Country);
-      setTiempoInicio(Date.now());
-    } catch (error) {
-      console.error("Fetch failed:", error);
+const palabra_aleatoria = async () => {
+  setShowModalTipoJuego(false);
+  setShowModalCargando(true);
+  try {
+    const response = await fetch(api_url + "random/?format=json");
+    if (!response.ok) {
       setModalError(true);
-    } finally {
-      setShowModalCargando(false);
     }
-  };
+    const data = await response.json();
+    setPalabra(data[0].Word);
+    setPalaraObjetivo(data[0].Word.toUpperCase());
+    setPista(data[0].Clue);
+    setTipoJuego("Palabra Aleatoria");
+
+    const banderaId = data[0].Country; // obtener el id del país
+    const bandera = await obtenerBandera(banderaId); // obtener la bandera con el id
+    setBandera(bandera); // establecer la bandera
+
+    setTiempoInicio(Date.now());
+  } catch (error) {
+    console.error("Fetch failed:", error);
+    setModalError(true);
+  } finally {
+    setShowModalCargando(false);
+  }
+};
+
 
 
   const contarLetras = (palabra) => {
@@ -313,7 +334,7 @@ const Juego = () => {
 
   return (
     <div>
-      <Modal show={showModalCargando}>
+      <Modal show={showModalCargando} handleClose={handleCloseCargando}>
         <img className="cargando" src={cargando}></img>
         <br></br>
         <br></br>
@@ -334,10 +355,11 @@ const Juego = () => {
         <img id="logoTipoJuego" src={logo} alt="Logo" />
         <h2>Selecciona el tipo de juego:</h2>
         <button className="tipoJuego btn-primary" onClick={palabra_dia}>
-          Palabra del día ☀️
+          Palabra del día &nbsp; <i class="fas fa-sun"></i>
         </button>
         <button className="tipoJuego btn-primary" onClick={palabra_aleatoria}>
-          Palabra aleatoria 🎲
+          Palabra aleatoria &nbsp; <i class="fas fa-dice"></i>
+                          
         </button>
         <br></br> <br></br>
       </Modal>
@@ -399,21 +421,21 @@ const Juego = () => {
                     }
                   }}
                 >
-                  🔍 Ver pista
+                  <i class="fa-solid fa-magnifying-glass"></i> Ver pista
                 </button>
               </div>
 
 
             <div className="botones">
               <button id="bComprobar" onClick={comprobar}>
-                Comprobar ✅
+              <i class="fa-regular fa-circle-check"></i> &nbsp;Comprobar 
               </button>
               <button id="bBorrar" onClick={borrar}>
-                Borrar 🗑️
+              <i class="fas fa-delete-left"></i>&nbsp;Borrar  
               </button>
             </div>
             <div className="tiempo">
-              🕒 Tiempo transcurrido: {Math.floor(tiempoTranscurrido / 60)}:
+            <i class="fa-sharp fa-solid fa-clock"></i>&nbsp; Tiempo transcurrido: {Math.floor(tiempoTranscurrido / 60)}:
               {(tiempoTranscurrido % 60).toFixed(0).padStart(2, "0")}
             </div>
           </div>
