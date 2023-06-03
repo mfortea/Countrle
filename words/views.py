@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import Word, Country
+from rest_framework.decorators import api_view
 from rest_framework import viewsets, permissions
 from rest_framework.response import Response
 import random
@@ -7,10 +8,22 @@ import datetime
 from .serializers import WordSerializer, CountrySerializer
 
 # Create your views here.
-class allWord(viewsets.ModelViewSet):
-    queryset = Word.objects.all()
-    permission_classes = [permissions.AllowAny]
-    serializer_class = WordSerializer
+@api_view(['GET'])
+def allWord(request):
+    if(request.method == 'GET'):
+        try:
+            if(created!=datetime.date.today() or not created):
+                random_idx = random.randint(0, Word.objects.count() - 1)
+                survey = Word.objects.filter(id=random_idx)
+                serializer = WordSerializer(survey, many=True)
+                created = datetime.date.today()
+                return Response(serializer.data)
+        except:
+            random_idx = random.randint(0, Word.objects.count() - 1)
+            survey = Word.objects.filter(id=random_idx)
+            serializer = WordSerializer(survey, many=False)
+            created = datetime.date.today()
+            return Response(serializer.data)
 
 class getWords(viewsets.ModelViewSet):    
     def get_queryset(self):

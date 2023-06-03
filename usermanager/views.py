@@ -2,16 +2,30 @@ from django.shortcuts import render
 from .models import User, Statics
 from rest_framework import viewsets, permissions
 from rest_framework.response import Response
+from rest_framework.decorators import api_view
 from .serializers import UserSerializer, StaticsSerializer
 from rest_framework.filters import SearchFilter, OrderingFilter
 
 # Create your views here.
+@api_view(['GET'])
+def login(request):
+    try:
+        if(request.method == 'GET'):
+            username = request.query_params.get('username')
+            password = request.query_params.get('password')
+            user = User.objects.get(username=username, password=password)
+            serializer = UserSerializer(user, many=False)
+            if serializer.is_valid():
+                return Response(serializer.data)
+    except:
+        return Response("Usuario no encontrado", status=404)
+
 class getUsers(viewsets.ModelViewSet):
     def get_queryset(self):
         queryset = User.objects.all()
         username = self.request.query_params.get('username')
         if username:
-            queryset = User.objects.filter(username=username)
+            queryset = User.objects.get(username=username)
             password= self.request.query_params.get('password')
             if password:
                 queryset = User.objects.filter(username=username, password=password)
