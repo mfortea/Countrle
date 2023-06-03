@@ -82,8 +82,7 @@ const Registro = () => {
           username,
           password,
           email,
-        },
-        { headers }
+        }
       );
       if (response.status) {
         setShowModalCargando(false);
