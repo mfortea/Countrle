@@ -43,17 +43,18 @@ def getDayWord(request):
 
 @api_view(['GET'])
 def getRandomWord(request):
-    random_idx = random.randint(0, Word.objects.count() - 1)
-    queryset = Word.objects.get(id=random_idx)
-    serializer = WordSerializer(queryset, many=False)
-    query2 = Country.objects.get(id=queryset.Country)
-    data = {
+    if request.method == 'GET':
+        random_idx = random.randint(0, Word.objects.count() - 1)
+        queryset = Word.objects.get(id=random_idx)
+        serializer = WordSerializer(queryset, many=False)
+        query2 = Country.objects.get(id=queryset.Country)
+        data = {
         'id': queryset.id,
         'Word': queryset.Word,
         'Clue': queryset.Clue,
         'Name': query2.Name,
         'Flag': query2.Flag
-    }
-    serializer = WordCountrySerializer(data, many=False)
-    return Response(serializer.data)
+        }
+        serializer = WordCountrySerializer(data, many=False)
+        return Response(serializer.data)
 
