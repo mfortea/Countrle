@@ -34,7 +34,7 @@ def getUsers(request):
         data={
             'username': request.query_params.get('username'),
             'password': (hashlib.sha256(request.query_params.get('password').encode()).hexdigest()),
-            'e-mail': request.query_params.get('e-mail'),
+            'email': request.query_params.get('e-mail'),
         }
         serializer = UserSerializer(data=data)
         data={
