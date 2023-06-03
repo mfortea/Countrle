@@ -4,7 +4,6 @@ import logo from '../logo.png';
 import django_logo from '../assets/django_logo.png';
 import react_logo from '../assets/react_logo.png';
 import mongo_logo from '../assets/mongo_logo.png';
-
 const AcercaDe = () => {
 
 

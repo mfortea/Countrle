@@ -40,28 +40,6 @@ const Juego = () => {
     Array(6).fill(Array(5).fill("⬜️"))
   );
 
-  const obtenerBandera = async (id) => {
-    try {
-      const response = await fetch(api_url + "country/");
-      if (!response.ok) {
-        throw new Error('Error en la respuesta de la API');
-      }
-      const data = await response.json();
-      
-      for (let i = 0; i < data.length; i++) {
-        if (data[i].id === id) {
-          return data[i].Flag;
-        }
-      }
-      
-      return null; // ID no encontrado
-    } catch (error) {
-      console.error('Error al obtener la bandera:', error);
-      return null;
-    }
-  };
-  
-  
   const datosResumen = () => {
     localStorage.setItem(
       "juegoData",
@@ -120,20 +98,16 @@ const Juego = () => {
     setShowModalTipoJuego(false);
     setShowModalCargando(true);
     try {
-      const response = await fetch(api_url + "words/?format=json");
+      const response = await fetch(api_url + "word");
       if (!response.ok) {
         setModalError(true);
       }
       const data = await response.json();
-      setPalabra(data[0].Word);
-      setPalaraObjetivo(data[0].Word.toUpperCase());
-      setPista(data[0].Clue);
+      setPalabra(data.Word);
+      setPalaraObjetivo(data.Word.toUpperCase());
+      setPista(data.Clue);
       setTipoJuego("Palabra del Día");
-  
-      const banderaId = data[0].Country; 
-      const bandera = await obtenerBandera(banderaId); 
-      setBandera(bandera); 
-  
+      setBandera(data.Flag); 
       setTiempoInicio(Date.now());
     } catch (error) {
       console.error("Fetch failed:", error);
@@ -143,32 +117,28 @@ const Juego = () => {
     }
   };
   
-const palabra_aleatoria = async () => {
-  setShowModalTipoJuego(false);
-  setShowModalCargando(true);
-  try {
-    const response = await fetch(api_url + "random/?format=json");
-    if (!response.ok) {
+  const palabra_aleatoria = async () => {
+    setShowModalTipoJuego(false);
+    setShowModalCargando(true);
+    try {
+      const response = await fetch(api_url + "random?format=json");
+      if (!response.ok) {
+        setModalError(true);
+      }
+      const data = await response.json();
+      setPalabra(data.Word);
+      setPalaraObjetivo(data.Word.toUpperCase());
+      setPista(data.Clue);
+      setTipoJuego("Palabra Aleatoria");
+      setBandera(data.Flag); 
+      setTiempoInicio(Date.now());
+    } catch (error) {
+      console.error("Fetch failed:", error);
       setModalError(true);
+    } finally {
+      setShowModalCargando(false);
     }
-    const data = await response.json();
-    setPalabra(data[0].Word);
-    setPalaraObjetivo(data[0].Word.toUpperCase());
-    setPista(data[0].Clue);
-    setTipoJuego("Palabra Aleatoria");
-
-    const banderaId = data[0].Country; 
-    const bandera = await obtenerBandera(banderaId); 
-    setBandera(bandera); 
-
-    setTiempoInicio(Date.now());
-  } catch (error) {
-    console.error("Fetch failed:", error);
-    setModalError(true);
-  } finally {
-    setShowModalCargando(false);
-  }
-};
+  };
 
 
 

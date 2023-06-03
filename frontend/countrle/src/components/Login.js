@@ -5,7 +5,7 @@ import Modal from "./Modal";
 import logo_login from "../assets/logo_login.png";
 import cargando from "../assets/cargando.gif";
 import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../components/AuthContext"; // importa AuthContext
+import { AuthContext } from "../components/AuthContext";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -52,7 +52,10 @@ const Login = () => {
 
       if (response.status === 200) {
         setShowModalCargando(false);
-        setAuth(true); // establece el estado de autenticación
+        localStorage.setItem("accessToken", response.data.accessToken);
+        localStorage.setItem("usuarioActual", username);
+        localStorage.setItem("isAuthenticated", "true"); // guardar la autenticación en el almacenamiento local
+        setAuth(true);
         navigate("/juego");
       }
     } catch (error) {
@@ -89,6 +92,7 @@ const Login = () => {
                 <input
                   type="text"
                   id="form2Example1"
+                  name="username" // agregar atributo name
                   className="form-control"
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
@@ -102,6 +106,7 @@ const Login = () => {
                 <input
                   type="password"
                   id="form2Example2"
+                  name="password" // agregar atributo name
                   className="form-control"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}

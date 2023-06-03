@@ -4,7 +4,6 @@ import Modal from "./Modal";
 import cargando from "../assets/cargando.gif";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import logo_login from "../assets/logo_login.png";
 
 const Registro = () => {
   const api_url = process.env.REACT_APP_API_URL;
@@ -67,11 +66,7 @@ const Registro = () => {
   const handleFormSubmit = async (e) => {
     e.preventDefault();
 
-    const formData = new FormData();
-    formData.append("username", username);
-    formData.append("password", password);
-    formData.append("email", email);
-
+ 
     const authString = `${api_user}:${api_pass}`;
     const headers = {
       Authorization: `Basic ${btoa(authString)}`,
@@ -81,10 +76,16 @@ const Registro = () => {
     setShowModalCargando(true);
 
     try {
-      const response = await axios.post(api_url + "users", formData, {
-        headers,
-      });
-      if (response.status === 201) {
+      const response = await axios.post(
+        api_url + "users?username=" + username + "&password=" + password + "&e-mail=" + email,
+        {
+          username,
+          password,
+          email,
+        },
+        { headers }
+      );
+      if (response.status) {
         setShowModalCargando(false);
         setShowModalRegistrado(true);
       } else {

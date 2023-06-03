@@ -15,12 +15,17 @@ import Logout from "./components/Logout";
 import logo from "./logo.png";
 import Ranking from "./components/Ranking";
 import { AuthContext } from "./components/AuthContext";
+import withAuthProtection from "./components/withAuthProtection";
 import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
+
 
 function App() {
   const navbarCollapse = useRef();
   const { auth } = useContext(AuthContext);
-  const usuarioActual = localStorage.getItem("token");
+  const ProtectedJuego = withAuthProtection(Juego);
+  const ProtectedResumen = withAuthProtection(Resumen);
+  const ProtectedAjustes = withAuthProtection(Ajustes);
+  const usuarioActual = localStorage.getItem('usuarioActual');
 
   return (
     <Router>
@@ -135,7 +140,7 @@ function App() {
                         >
                           <li>
                             <a className="dropdown-item disabled" href="#">
-                              manolo69
+                              {usuarioActual}
                             </a>
                           </li>
                           <li>
@@ -159,7 +164,7 @@ function App() {
             </div>
           </nav>
           <Routes>
-          <Route path="/" element={<Inicio />} />
+            <Route path="/" element={<Inicio />} />
             <Route path="/acercaDe" element={<AcercaDe />} />
             <Route path="/reglas" element={<Reglas />} />
             <Route path="/ranking" element={<Ranking />} />
@@ -167,9 +172,9 @@ function App() {
             <Route path="/registro" element={<Registro />} />
             <Route path="/500" element={<Error500 />} />
             <Route path="/logout" element={<Logout />} />
-            {auth && <Route path="/juego" element={<Juego />} />}
-            {auth && <Route path="/resumen" element={<Resumen />} />}
-            {auth && <Route path="/ajustes" element={<Ajustes />} />}
+            <Route path="/juego" element={<ProtectedJuego />} />
+            <Route path="/resumen" element={<ProtectedResumen />} />
+            <Route path="/ajustes" element={<ProtectedAjustes />} />
             <Route path="/*" element={<Error404 />} />
           </Routes>
         </div>

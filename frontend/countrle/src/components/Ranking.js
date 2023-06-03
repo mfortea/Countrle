@@ -1,32 +1,31 @@
-import React, { useContext, useRef } from "react";
+import React, { useContext, useState, useEffect } from "react";
+import axios from "axios";
 import "./Ranking.css";
 import { AuthContext } from "../components/AuthContext";
+import LoadingGif from "../assets/cargando.gif"; // Asegúrate de que la ruta a tu gif de carga sea correcta
 
 const Ranking = () => {
   const { auth } = useContext(AuthContext);
-  const usuarioActual = { nombre: "Usuario6", puntuacion: 150, posicion: 6 };
-  const ranking = [
-    { nombre: "Usuario1", puntuacion: 1000 },
-    { nombre: "Usuario2", puntuacion: 900 },
-    { nombre: "Usuario3", puntuacion: 800 },
-    { nombre: "Usuario4", puntuacion: 700 },
-    { nombre: "Usuario5", puntuacion: 600 },
-    { nombre: "Usuario6", puntuacion: 500 },
-    { nombre: "Usuario7", puntuacion: 400 },
-    { nombre: "Usuario8", puntuacion: 300 },
-    { nombre: "Usuario9", puntuacion: 200 },
-    { nombre: "Usuario10", puntuacion: 100 },
-  ];
+  const [ranking, setRanking] = useState([]);
+  const [isLoading, setIsLoading] = useState(true); // Nuevo estado para la carga de datos
+  const api_url = "https://countrle-api.onrender.com/api/ranking";
+  const usuarioActual = localStorage.getItem('usuarioActual');
+  
 
-  const formatTime = (segundos) => {
-    if (segundos < 60) {
-      return `${segundos} segundos`;
-    }
+  useEffect(() => {
+    const fetchRanking = async () => {
+      try {
+        const response = await axios.get(api_url);
+        setRanking(response.data);
+      } catch (error) {
+        console.error("Error:", error);
+      } finally {
+        setIsLoading(false); // Datos cargados
+      }
+    };
 
-    const minutos = Math.floor(segundos / 60);
-    const segundosRestantes = segundos % 60;
-    return `${minutos} min ${segundosRestantes} seg`;
-  };
+    fetchRanking();
+  }, []);
 
   return (
     <div>
@@ -37,7 +36,7 @@ const Ranking = () => {
             {auth && (
               <>
                 <div className="usuario-actual">
-                  <h1>{usuarioActual.nombre}</h1>
+                  <h1>{usuarioActual}</h1>
                   <h3>
                     Puntuación:{" "}
                     <strong className="puntos">
@@ -55,27 +54,34 @@ const Ranking = () => {
                 &nbsp; Ranking Global
               </h2>
               <br></br>
-              <div className="contenedor_ranking">
-                {ranking.slice(0, 10).map((usuario, index) => (
-                  <div
-                    className={`fila_ranking posicion_${index + 1}`}
-                    key={index}
-                  >
-                    <span className="posicion">{index + 1}º</span>
-                    <div className="datos_ranking">
-                      <p>
-                        {usuario.nombre} - {usuario.puntuacion} puntos
-                      </p>
+              {isLoading ? (
+                <div className="loading-container">
+                  <img src={LoadingGif} alt="Loading..." />
+                </div>
+              ) : (
+                <div className="contenedor_ranking">
+                  {ranking.slice(0, Math.min(10, ranking.length)).map((usuario, index) => (
+                    <div
+                      className={`fila_ranking posicion_${index + 1}`}
+                      key={index}
+                    >
+                      <span className="posicion">{index + 1}º</span>
+                      <div className="datos_ranking">
+                        <p>
+                          {usuario.user} - {usuario.score} puntos
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                ))}
-              </div>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
         </div>
       </div>
     </div>
   );
+
 };
 
 export default Ranking;
