@@ -11,4 +11,4 @@ class StaticsSerializer(ModelSerializer):
     class Meta:
         model = Statics
         fields = ('user', 'score', 'time', 'totalWords')
-        read_only_fields = ('user', )
+        read_only_fields = ( )

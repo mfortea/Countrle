@@ -15,23 +15,20 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from words.views import getWords, getCountry, getRandomWord, allWord
-from usermanager.views import getUsers, getBest, login
+from words.views import getRandomWord, getDayWord
+from usermanager.views import getUsers, getRanking, login, ScoreUser
 from rest_framework import routers
 
 
 router = routers.DefaultRouter()
 
-router.register('words', getWords, basename='words')
-router.register('random', getRandomWord, basename='random')
-router.register('country', getCountry,  basename='country')
-router.register('best', getBest, basename='best')
-
 urlpatterns = [
     path('admin/', admin.site.urls),  # Ruta del sitio de administración
-    path('api/', include(router.urls)),  # Rutas del API
-    path('api/word', allWord, name='allWord'),
+    path('api/word', getDayWord, name='dayWord'),
     path('api/user', login, name='login'),
     path('api/users', getUsers, name='getUsers'),
+    path('api/score', ScoreUser, name='getBest'),
+    path('api/ranking', getRanking, name='getRanking'),
+    path('api/random', getRandomWord, name='getRandomWord'),
 ]
 

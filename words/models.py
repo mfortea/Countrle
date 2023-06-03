@@ -13,4 +13,8 @@ class Word(models.Model):
     Country = models.CharField(default='nulo', max_length=15)
     Clue = models.CharField(max_length=400)
 
+class Time(models.Model):
+    time = models.DateField()
+    Wid = models.IntegerField(default=0)
+
     
