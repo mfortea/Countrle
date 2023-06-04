@@ -20,11 +20,6 @@ function Ajustes() {
             <h1>Ajustes</h1>
             <h2>Hola {usuarioActual}</h2>
             <br></br>
-            <button className="tipoJuego bAjustes btn-primary">
-              <i className="fas fa-lock"></i>
-              &nbsp; Cambiar contraseña
-            </button>
-            <br></br>
             <button 
               className="tipoJuego bAjustes btn-primary" 
               onClick={handleLogout}

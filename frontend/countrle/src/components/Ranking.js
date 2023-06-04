@@ -2,25 +2,37 @@ import React, { useContext, useState, useEffect } from "react";
 import axios from "axios";
 import "./Ranking.css";
 import { AuthContext } from "../components/AuthContext";
-import LoadingGif from "../assets/cargando.gif"; // Asegúrate de que la ruta a tu gif de carga sea correcta
+import LoadingGif from "../assets/cargando.gif"; 
 
 const Ranking = () => {
   const { auth } = useContext(AuthContext);
   const [ranking, setRanking] = useState([]);
   const [isLoading, setIsLoading] = useState(true); // Nuevo estado para la carga de datos
-  const api_url = "https://countrle-api.onrender.com/api/ranking";
+  const api_url_ranking = "https://countrle-api.onrender.com/api/ranking";
+  const api_url_score = "https://countrle-api.onrender.com/api/score";
   const usuarioActual = localStorage.getItem('usuarioActual');
-  
+  const [puntosActuales, setPuntosActuales] = useState(0); // Nuevo estado para los puntos
+  const [posicion, setPosicion] = useState(0); // Nuevo estado para guardar la posición del usuario
 
   useEffect(() => {
     const fetchRanking = async () => {
+      setIsLoading(true);
       try {
-        const response = await axios.get(api_url);
-        setRanking(response.data);
+        const responseRanking = await axios.get(api_url_ranking);
+        setRanking(responseRanking.data);
+
+        // Buscar la posición del usuario en el ranking
+        const posicionUsuario = responseRanking.data.findIndex(usuario => usuario.user === usuarioActual);
+        // El index de findIndex comienza desde 0, por lo que debemos sumar 1 para obtener la posición real
+        setPosicion(posicionUsuario + 1);
+        
+        // Obtener la puntuación del usuario actual
+        const responseScore = await axios.get(`${api_url_score}?username=${usuarioActual}`);
+        setPuntosActuales(responseScore.data.score);
       } catch (error) {
         console.error("Error:", error);
       } finally {
-        setIsLoading(false); // Datos cargados
+        setIsLoading(false);
       }
     };
 
@@ -36,14 +48,22 @@ const Ranking = () => {
             {auth && (
               <>
                 <div className="usuario-actual">
-                  <h1>{usuarioActual}</h1>
-                  <h3>
-                    Puntuación:{" "}
-                    <strong className="puntos">
-                      {usuarioActual.puntuacion} puntos
-                    </strong>
-                  </h3>
-                  <h4>Estás el {usuarioActual.posicion}º en la tabla</h4>
+                  {isLoading ? (
+                    <div className="loading-container">
+                      <img className="cargandoRanking" src={LoadingGif} alt="Loading..." />
+                    </div>
+                  ) : (
+                    <>
+                      <h1>{usuarioActual}</h1>
+                      <h3>
+                        Puntuación:{" "}
+                        <strong className="puntos">
+                          {puntosActuales} puntos
+                        </strong>
+                      </h3>
+                      <h4>Estás el {posicion}º en la tabla</h4>
+                    </>
+                  )}
                 </div>
               </>
             )}
@@ -81,7 +101,6 @@ const Ranking = () => {
       </div>
     </div>
   );
-
 };
 
 export default Ranking;

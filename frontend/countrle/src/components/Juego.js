@@ -4,7 +4,6 @@ import "./Juego.css";
 import logo from "../logo.png";
 import cargando from "../assets/cargando.gif";
 import Modal from "./Modal";
-import Resumen from "./Resumen";
 
 const Juego = () => {
   const navigate = useNavigate();
@@ -56,11 +55,12 @@ const Juego = () => {
     );
   };
 
+
   const handleCloseLose = () => {
     setShowModalLose(false);
     navigate("/resumen");
     if (puntos < 0) {
-      setPuntos(0); 
+      setPuntos(0);
     }
     datosResumen();
   };
@@ -69,7 +69,7 @@ const Juego = () => {
     setShowModalWin(false);
     navigate("/resumen");
     if (puntos < 0) {
-      setPuntos(0); // asegura que los puntos no son negativos
+      setPuntos(0);
     }
     datosResumen();
   };
@@ -107,7 +107,7 @@ const Juego = () => {
       setPalaraObjetivo(data.Word.toUpperCase());
       setPista(data.Clue);
       setTipoJuego("Palabra del Día");
-      setBandera(data.Flag); 
+      setBandera(data.Flag);
       setTiempoInicio(Date.now());
     } catch (error) {
       console.error("Fetch failed:", error);
@@ -116,7 +116,7 @@ const Juego = () => {
       setShowModalCargando(false);
     }
   };
-  
+
   const palabra_aleatoria = async () => {
     setShowModalTipoJuego(false);
     setShowModalCargando(true);
@@ -130,7 +130,7 @@ const Juego = () => {
       setPalaraObjetivo(data.Word.toUpperCase());
       setPista(data.Clue);
       setTipoJuego("Palabra Aleatoria");
-      setBandera(data.Flag); 
+      setBandera(data.Flag);
       setTiempoInicio(Date.now());
     } catch (error) {
       console.error("Fetch failed:", error);
@@ -139,8 +139,6 @@ const Juego = () => {
       setShowModalCargando(false);
     }
   };
-
-
 
   const contarLetras = (palabra) => {
     const conteo = {};
@@ -340,7 +338,6 @@ const Juego = () => {
         </button>
         <button className="tipoJuego btn-primary" onClick={palabra_aleatoria}>
           Palabra aleatoria &nbsp; <i className="fas fa-dice"></i>
-                          
         </button>
         <br></br> <br></br>
       </Modal>
@@ -387,36 +384,36 @@ const Juego = () => {
                 </button>
               ))}
             </div>
-              <div>
-                <br></br>
-                <button
-                  className="bPista"
-                  onClick={() => {
-                    setModalPista(true);
-                    setMostrarPista(!mostrarPista);
-                    setPistaUsada(true);
-                    // Sólo aplica la penalización si no se ha aplicado antes
-                    if (!penalizacionPorPistaAplicada) {
-                      setPuntos((prevPuntos) => prevPuntos - 20);
-                      setPenalizacionPorPistaAplicada(true); // Actualizamos la variable para indicar que ya se aplicó la penalización
-                    }
-                  }}
-                >
-                  <i className="fa-solid fa-magnifying-glass"></i> Ver pista
-                </button>
-              </div>
-
+            <div>
+              <br></br>
+              <button
+                className="bPista"
+                onClick={() => {
+                  setModalPista(true);
+                  setMostrarPista(!mostrarPista);
+                  setPistaUsada(true);
+                  // Sólo aplica la penalización si no se ha aplicado antes
+                  if (!penalizacionPorPistaAplicada) {
+                    setPuntos((prevPuntos) => prevPuntos - 20);
+                    setPenalizacionPorPistaAplicada(true); // Actualizamos la variable para indicar que ya se aplicó la penalización
+                  }
+                }}
+              >
+                <i className="fa-solid fa-magnifying-glass"></i> Ver pista
+              </button>
+            </div>
 
             <div className="botones">
               <button id="bComprobar" onClick={comprobar}>
-              <i className="fa-regular fa-circle-check"></i> &nbsp;Comprobar 
+                <i className="fa-regular fa-circle-check"></i> &nbsp;Comprobar
               </button>
               <button id="bBorrar" onClick={borrar}>
-              <i className="fas fa-delete-left"></i>&nbsp;Borrar  
+                <i className="fas fa-delete-left"></i>&nbsp;Borrar
               </button>
             </div>
             <div className="tiempo">
-            <i className="fa-sharp fa-solid fa-clock"></i>&nbsp; Tiempo transcurrido: {Math.floor(tiempoTranscurrido / 60)}:
+              <i className="fa-sharp fa-solid fa-clock"></i>&nbsp; Tiempo
+              transcurrido: {Math.floor(tiempoTranscurrido / 60)}:
               {(tiempoTranscurrido % 60).toFixed(0).padStart(2, "0")}
             </div>
           </div>

@@ -65,14 +65,7 @@ const Registro = () => {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-
- 
-    const authString = `${api_user}:${api_pass}`;
-    const headers = {
-      Authorization: `Basic ${btoa(authString)}`,
-      "Content-Type": "multipart/form-data",
-    };
-
+    
     setShowModalCargando(true);
 
     try {
