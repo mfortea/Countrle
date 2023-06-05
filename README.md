@@ -21,7 +21,7 @@ Countrle es una aplicación web que ofrece un divertido giro al popular juego Wo
 ## 🚀 Despliegue
 
 ### 🎭 DESPLIEGUE FRONTEND
-Nuestrro frontend con React está desplegado en la plataforma gratuita Netlify, donde se sincroniza automáticamente con este respositorio. El estado actual del despliegue es el siguiente:
+Nuestro frontend con React está desplegado en la plataforma gratuita Netlify, donde se sincroniza automáticamente con este respositorio. El estado actual del despliegue es el siguiente:
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/72abcae7-7cdf-4332-b314-048ef2b247ec/deploy-status)](https://app.netlify.com/sites/countrle/deploys)
 
@@ -31,7 +31,8 @@ Puedes acceder desde este enlace: [https://countrle.netlify.app](https://countrl
 
 
 ### 🏎️ DESPLIEGUE BACKEND
-
+Nuestro backend ha sido desarrollado con Django. La API es pública y está disponible desde este enlace:
+Puedes acceder desde este enlace: https://countrle-api.onrender.com/api/
 
 
 ### 🏠 DESPLIEGUE LOCAL
