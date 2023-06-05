@@ -28,6 +28,10 @@ function Ajustes() {
               &nbsp; Cerrar sesión
             </button>
             <br></br>
+            <button className="tipoJuego bAjustes btn-primary">
+              <i className="fas fa-lock"></i>
+              &nbsp; Cambiar Contraseña
+            </button>
             <button className="tipoJuego bAjustes btn-danger">
               <i className="fas fa-delete-left"></i>
               &nbsp; Eliminar cuenta
