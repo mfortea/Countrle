@@ -4,6 +4,9 @@
 
 Countrle es una aplicación web que ofrece un divertido giro al popular juego Wordle. En este juego, los jugadores se desafían a adivinar conceptos relacionados con países. Desarrollada utilizando Django y React, Countrle ofrece una experiencia de juego entretenida y educativa.
 
+## ⚖️ Licencia 
+El contenido de este repositorio está sujeto bajo una licencia [Boost Software License 1.0](LICENSE)
+
 ## 📝 Características 
 
 - Adivina conceptos relacionados con países en un formato similar a Wordle.
