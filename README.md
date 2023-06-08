@@ -15,11 +15,15 @@ El contenido de este repositorio está sujeto bajo una licencia [Boost Software 
 
 ## ⚙️ Tecnologías Utilizadas 
 
-- Django: Framework de desarrollo web en Python.
-- React: Biblioteca de JavaScript para construir interfaces de usuario.
-- HTML/CSS: Lenguajes fundamentales para el desarrollo web.
-- MondoDB: Sistema de gestión de bases de datos utilizado por Django.
-- npm: Gestor de paquetes para la instalación de dependencias de JavaScript.
+- **Django:** Framework de desarrollo web en Python.
+- **React:** Biblioteca de JavaScript para construir interfaces de usuario.
+- **HTML/CSS:** Lenguajes fundamentales para el desarrollo web.
+- **MondoDB:** Sistema de gestión de bases de datos utilizado por Django.
+- **npm:** Gestor de paquetes para la instalación de dependencias de JavaScript.
+
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+![Django](https://img.shields.io/badge/django-%23092E20.svg?style=for-the-badge&logo=django&logoColor=white)
+![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white)
 
 ## 🚀 Despliegue
 
