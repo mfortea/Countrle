@@ -7,6 +7,9 @@ Countrle es una aplicación web que ofrece un divertido giro al popular juego Wo
 ## ⚖️ Licencia 
 El contenido de este repositorio está sujeto bajo una licencia [Boost Software License 1.0](LICENSE)
 
+[![mfortea - mfortea](https://img.shields.io/static/v1?label=mfortea&message=mfortea&color=blue&logo=github)](https://github.com/mfortea/mfortea "Go to GitHub repo")
+[![jes106 - jes106](https://img.shields.io/static/v1?label=jes106&message=jes106&color=blue&logo=github)](https://github.com/jes106/jes106 "Go to GitHub repo")
+
 ## 📝 Características 
 
 - Adivina conceptos relacionados con países en un formato similar a Wordle.
