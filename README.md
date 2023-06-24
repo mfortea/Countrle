@@ -57,3 +57,13 @@ Para ejecutar Countrle en tu equipo local, sigue estos pasos:
 4. Inicia el servidor de desarrollo frontend: `npm start`
 5. Abre tu navegador web y visita `http://localhost:3000` para jugar Countrle.
 
+## ⚠️ AVISO
+
+Este repositorio contiene una aplicación que se encuentra alojada en un servidor de despliegue para acceso público. Sin embargo, es importante destacar que no se asume ninguna responsabilidad por su uso.
+
+Tenga en cuenta lo siguiente:
+
+- Esta aplicación no es un producto comercial completo y refinado.
+- El proyecto aún está en desarrollo y no ha sido revisado en su totalidad, por lo que no se puede garantizar su pleno funcionamiento.
+- Es posible que la aplicación contenga errores y que no todas las características estén disponibles.
+
