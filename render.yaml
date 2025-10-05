@@ -4,5 +4,5 @@ services:
     env: python
     pythonVersion: 3.11
     buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn countrle.wsgi
+    startCommand: gunicorn Countrle.wsgi
     autoDeploy: true
